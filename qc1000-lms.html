@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master QC 1000 Implementation for Your Audit Firm | CPAClub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F1F3D;
+    --navy-mid: #1A3260;
+    --blue-accent: #2563EB;
+    --blue-light: #EFF6FF;
+    --teal: #0D9488;
+    --teal-light: #F0FDFA;
+    --gold: #B45309;
+    --gold-light: #FFFBEB;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --green: #16A34A;
+    --green-light: #F0FDF4;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-500: #64748B;
+    --gray-700: #334155;
+    --gray-900: #0F172A;
+    --white: #FFFFFF;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(15,31,61,0.08), 0 4px 16px rgba(15,31,61,0.06);
+    --shadow-lg: 0 8px 32px rgba(15,31,61,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: #60A5FA; }
+
+  .header-badge {
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* ── COURSE HEADER ── */
+  .course-header {
+    grid-column: 1 / -1;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    box-shadow: var(--shadow);
+  }
+
+  .course-meta-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .badge-blue { background: var(--blue-light); color: var(--blue-accent); }
+  .badge-teal { background: var(--teal-light); color: var(--teal); }
+  .badge-gold { background: var(--gold-light); color: var(--gold); }
+  .badge-navy { background: #EEF2FF; color: var(--navy); }
+
+  .course-title {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .course-subtitle {
+    color: var(--gray-500);
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .course-stats {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-200);
+  }
+
+  .stat { }
+  .stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-500);
+    margin-bottom: 3px;
+  }
+  .stat-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+
+  /* ── MAIN COLUMN ── */
+  .main-col { display: flex; flex-direction: column; gap: 24px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 20px 28px 0;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray-500);
+    margin-bottom: 4px;
+  }
+
+  .card-heading {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: -0.3px;
+  }
+
+  .card-body { padding: 20px 28px 28px; }
+
+  /* ── VIDEO SECTION ── */
+  .video-wrapper {
+    margin: 20px 28px 0;
+    background: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .video-placeholder {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    padding: 40px;
+  }
+
+  .video-placeholder .play-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 24px;
+  }
+
+  .video-placeholder p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 500;
+  }
+
+  .video-placeholder small {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    display: block;
+    line-height: 1.5;
+  }
+
+  .video-note {
+    margin: 10px 28px 0;
+    font-size: 12px;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── PROGRESS TRACKER ── */
+  .progress-section { padding: 20px 28px 28px; }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-700);
+    margin-bottom: 8px;
+  }
+
+  .progress-bar-bg {
+    height: 8px;
+    background: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), #06B6D4);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+    width: 0%;
+  }
+
+  .progress-steps {
+    display: flex;
+    gap: 8px;
+  }
+
+  .step-dot {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--gray-500);
+    font-weight: 500;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray-300);
+    flex-shrink: 0;
+  }
+  .dot.complete { background: var(--teal); }
+  .dot.active { background: var(--blue-accent); }
+
+  /* ── LEARNING OBJECTIVES ── */
+  .lo-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .lo-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--gray-50);
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+  }
+
+  .lo-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .lo-text {
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+
+  /* ── REVIEW QUESTIONS ── */
+  .rq-item {
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .rq-item:last-child { margin-bottom: 0; }
+
+  .rq-header {
+    padding: 16px 20px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .rq-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .rq-timing {
+    font-size: 11px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .rq-body { padding: 20px; }
+
+  .rq-question {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-900);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .rq-options { display: flex; flex-direction: column; gap: 8px; }
+
+  .rq-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--gray-700);
+    transition: all 0.15s ease;
+    background: var(--white);
+    text-align: left;
+    width: 100%;
+    line-height: 1.4;
+  }
+  .rq-option:hover { border-color: var(--blue-accent); background: var(--blue-light); }
+  .rq-option.correct { border-color: var(--green); background: var(--green-light); color: #14532D; }
+  .rq-option.incorrect { border-color: var(--red); background: var(--red-light); color: #7F1D1D; }
+  .rq-option.disabled { pointer-events: none; opacity: 0.5; }
+  .rq-option.correct.show, .rq-option.incorrect.show { opacity: 1; }
+
+  .opt-letter {
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .rq-feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .rq-feedback.correct { background: var(--green-light); color: #14532D; border: 1px solid #86EFAC; display: block; }
+  .rq-feedback.incorrect { background: var(--red-light); color: #7F1D1D; border: 1px solid #FCA5A5; display: block; }
+
+  /* ── QUALIFIED ASSESSMENT ── */
+  #assessment { display: none; }
+  #assessment.active { display: block; }
+
+  .assessment-intro {
+    background: var(--gold-light);
+    border: 1px solid #FDE68A;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #78350F;
+    line-height: 1.6;
+  }
+
+  .assessment-intro strong { font-weight: 600; }
+
+  .qa-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-200); }
+  .qa-item:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .qa-question {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .qa-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-400);
+    display: block;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .qa-options { display: flex; flex-direction: column; gap: 8px; }
+
+  .qa-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--gray-700);
+    transition: all 0.15s ease;
+    background: var(--white);
+    text-align: left;
+    width: 100%;
+    line-height: 1.4;
+  }
+  .qa-option:hover:not(.locked) { border-color: var(--blue-accent); background: var(--blue-light); }
+  .qa-option.selected { border-color: var(--blue-accent); background: var(--blue-light); color: #1E3A8A; }
+  .qa-option.selected .opt-letter { color: var(--blue-accent); }
+  .qa-option.reveal-correct { border-color: var(--green); background: var(--green-light); color: #14532D; }
+  .qa-option.reveal-wrong { border-color: var(--red); background: var(--red-light); color: #7F1D1D; }
+  .qa-option.locked { pointer-events: none; }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: background 0.2s ease;
+    letter-spacing: 0.2px;
+  }
+  .submit-btn:hover { background: var(--navy-mid); }
+  .submit-btn:disabled { background: var(--gray-300); color: var(--gray-500); cursor: not-allowed; }
+
+  /* ── RESULTS ── */
+  #results-section { display: none; }
+  #results-section.active { display: block; }
+
+  .score-card {
+    text-align: center;
+    padding: 40px 32px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+  }
+  .score-card.pass { background: var(--green-light); border: 2px solid #86EFAC; }
+  .score-card.fail { background: var(--red-light); border: 2px solid #FCA5A5; }
+
+  .score-icon { font-size: 40px; margin-bottom: 12px; }
+
+  .score-number {
+    font-family: var(--serif);
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .score-card.pass .score-number { color: var(--green); }
+  .score-card.fail .score-number { color: var(--red); }
+
+  .score-label {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .score-card.pass .score-label { color: #14532D; }
+  .score-card.fail .score-label { color: #7F1D1D; }
+
+  .score-sub {
+    font-size: 13px;
+    opacity: 0.7;
+  }
+  .score-card.pass .score-sub { color: #14532D; }
+  .score-card.fail .score-sub { color: #7F1D1D; }
+
+  /* ── CERTIFICATE ── */
+  #certificate { display: none; }
+
+  .cert-wrapper {
+    border: 3px double var(--navy);
+    border-radius: 4px;
+    padding: 48px;
+    text-align: center;
+    position: relative;
+    background: var(--white);
+  }
+
+  .cert-logo {
+    font-family: var(--serif);
+    font-size: 24px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .cert-nasba {
+    font-size: 11px;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cert-title-sm {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gray-500);
+    margin-bottom: 12px;
+  }
+
+  .cert-main-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .cert-awarded {
+    font-size: 13px;
+    color: var(--gray-500);
+    margin-bottom: 24px;
+  }
+
+  .cert-name-field {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--navy);
+    border: none;
+    border-bottom: 1.5px solid var(--navy);
+    text-align: center;
+    padding: 4px 8px;
+    width: 320px;
+    margin-bottom: 4px;
+    background: transparent;
+  }
+  .cert-name-field:focus { outline: none; border-bottom-color: var(--blue-accent); }
+
+  .cert-name-hint {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-bottom: 28px;
+  }
+
+  .cert-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0;
+    padding: 20px 0;
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .cert-detail-item { text-align: center; }
+  .cert-detail-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gray-400);
+    margin-bottom: 4px;
+  }
+  .cert-detail-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .cert-signatures {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    margin-top: 28px;
+  }
+
+  .cert-sig { text-align: center; }
+  .cert-sig-line {
+    width: 140px;
+    height: 1px;
+    background: var(--navy);
+    margin: 0 auto 6px;
+  }
+  .cert-sig-name {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .cert-sig-title {
+    font-size: 10px;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .cert-nasba-footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+    font-size: 10px;
+    color: var(--gray-400);
+    line-height: 1.6;
+  }
+
+  .print-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    border: 1.5px solid var(--navy);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.2px;
+  }
+  .print-btn:hover { background: var(--navy); color: var(--white); }
+
+  /* ── SIDEBAR ── */
+  .sidebar { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 80px; }
+
+  .sidebar-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .sidebar-section { padding: 20px; border-bottom: 1px solid var(--gray-200); }
+  .sidebar-section:last-child { border-bottom: none; }
+
+  .sidebar-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .detail-row:last-child { margin-bottom: 0; }
+  .detail-key { color: var(--gray-500); font-weight: 500; flex-shrink: 0; }
+  .detail-val { color: var(--gray-900); font-weight: 500; text-align: right; }
+
+  /* Instructors */
+  .instructor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .instructor-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+  .instructor-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .instructor-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 1px;
+  }
+  .instructor-role { font-size: 12px; color: var(--gray-500); }
+
+  /* Nav steps */
+  .step-nav { display: flex; flex-direction: column; gap: 4px; }
+
+  .step-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-500);
+    cursor: pointer;
+    border: none;
+    background: none;
+    text-align: left;
+    width: 100%;
+    transition: all 0.15s ease;
+  }
+  .step-btn.active { background: var(--blue-light); color: var(--blue-accent); }
+  .step-btn.complete { color: var(--teal); }
+  .step-btn.locked { opacity: 0.4; cursor: not-allowed; }
+
+  .step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1.5px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .step-btn.complete .step-icon { background: var(--teal); border-color: var(--teal); color: white; }
+  .step-btn.active .step-icon { background: var(--blue-accent); border-color: var(--blue-accent); color: white; }
+
+  /* ── SECTION VISIBILITY ── */
+  .course-section { display: none; }
+  .course-section.active { display: block; }
+
+  /* ── UNLOCK BANNER ── */
+  .unlock-banner {
+    display: none;
+    background: var(--teal-light);
+    border: 1px solid #5EEAD4;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #134E4A;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .unlock-banner.show { display: block; }
+
+  /* ── EVALUATION ── */
+  .eval-intro {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .eval-question { margin-bottom: 24px; }
+  .eval-q-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-900);
+    margin-bottom: 10px;
+  }
+
+  .likert-scale {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--gray-100);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gray-200);
+  }
+
+  .likert-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 4px;
+    padding: 0 2px;
+  }
+
+  .likert-opt {
+    flex: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--gray-500);
+    border: none;
+    background: none;
+    transition: all 0.15s ease;
+    border-right: 1px solid var(--gray-200);
+  }
+  .likert-opt:last-child { border-right: none; }
+  .likert-opt:hover { background: var(--blue-light); color: var(--blue-accent); }
+  .likert-opt.selected { background: var(--navy); color: var(--white); }
+
+  .eval-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--gray-900);
+    resize: vertical;
+    min-height: 80px;
+    transition: border-color 0.15s ease;
+  }
+  .eval-textarea:focus { outline: none; border-color: var(--blue-accent); }
+
+  .eval-submitted {
+    display: none;
+    background: var(--green-light);
+    border: 1px solid #86EFAC;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #14532D;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    .course-header { padding: 24px 20px; }
+    .course-title { font-size: 24px; }
+    .sidebar { position: static; }
+    .cert-wrapper { padding: 28px 20px; }
+    .cert-details-grid { grid-template-columns: 1fr; }
+    .cert-signatures { gap: 32px; }
+    .cert-name-field { width: 240px; }
+  }
+
+  @media print {
+    .site-header, .sidebar, .course-header, .step-nav, #section-video, #section-review, #section-evaluation { display: none !important; }
+    #section-certificate { display: block !important; }
+    .layout { display: block; max-width: 100%; padding: 0; }
+    .main-col { gap: 0; }
+    .card { box-shadow: none; border: none; }
+    .print-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">CPA<span>Club</span></div>
+  <div class="header-badge">QAS™ Self-Study</div>
+</header>
+
+<div class="layout">
+
+  <!-- COURSE HEADER -->
+  <div class="course-header">
+    <div class="course-meta-row">
+      <span class="badge badge-navy">Auditing</span>
+      <span class="badge badge-teal">Advanced</span>
+      <span class="badge badge-blue">1.0 CPE Credit</span>
+      <span class="badge badge-gold">QAS™ Self-Study</span>
+    </div>
+    <h1 class="course-title">Master QC 1000 Implementation<br>for Your Audit Firm</h1>
+    <p class="course-subtitle">Expert panel discussion with former PCAOB Director and former PwC Chief Auditor</p>
+    <div class="course-stats">
+      <div class="stat"><div class="stat-label">Field of Study</div><div class="stat-value">Auditing</div></div>
+      <div class="stat"><div class="stat-label">Level</div><div class="stat-value">Advanced</div></div>
+      <div class="stat"><div class="stat-label">Credits</div><div class="stat-value">1.0 CPE</div></div>
+      <div class="stat"><div class="stat-label">Passing Score</div><div class="stat-value">70% (7/10)</div></div>
+      <div class="stat"><div class="stat-label">Delivery</div><div class="stat-value">QAS™ Self-Study</div></div>
+    </div>
+  </div>
+
+  <!-- MAIN COLUMN -->
+  <div class="main-col">
+
+    <!-- PROGRESS -->
+    <div class="card">
+      <div class="progress-section">
+        <div class="progress-label">
+          <span>Your Progress</span>
+          <span id="progress-pct">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-steps" id="progress-steps">
+          <div class="step-dot"><div class="dot active" id="dot-1"></div>Video</div>
+          <div class="step-dot"><div class="dot" id="dot-2"></div>Review Q's</div>
+          <div class="step-dot"><div class="dot" id="dot-3"></div>Assessment</div>
+          <div class="step-dot"><div class="dot" id="dot-4"></div>Evaluation</div>
+          <div class="step-dot"><div class="dot" id="dot-5"></div>Certificate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div class="card course-section active" id="section-video">
+      <div class="card-header">
+        <div class="card-title">Step 1</div>
+        <div class="card-heading">Watch the Panel Discussion</div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://auditclub.sharepoint.com/sites/AuditClub2/_layouts/15/embed.aspx?UniqueId=b350df1d-224c-4e19-a5ad-793902349759&embed=%7B%22af%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="100%" height="100%" frameborder="0" scrolling="no" allowfullscreen title="QO EP 1.mp4" style="border:none;"></iframe>
+      </div>
+      <p class="video-note">⏱ Approx. 60 minutes · Auditing · QC 1000 Implementation</p>
+      <div class="card-body">
+        <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">Watch the complete panel discussion before proceeding to the review questions. Five check-in questions will appear at natural breaks throughout the program.</p>
+        <button class="submit-btn" onclick="completeVideo()" style="margin-top:0">
+          Mark Video Complete &amp; Continue →
+        </button>
+      </div>
+    </div>
+
+    <!-- REVIEW QUESTIONS -->
+    <div class="card course-section" id="section-review">
+      <div class="card-header">
+        <div class="card-title">Step 2 — Formative Review</div>
+        <div class="card-heading">Review Questions</div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:14px;color:var(--gray-500);margin-bottom:20px;">These check-in questions are not graded and do not affect your CPE credit. They reinforce learning at natural breaks during the recording.</p>
+        <div id="review-questions-container"></div>
+        <button class="submit-btn" id="proceed-to-assessment" onclick="proceedToAssessment()" style="display:none;margin-top:20px">
+          Proceed to Qualified Assessment →
+        </button>
+      </div>
+    </div>
+
+    <!-- ASSESSMENT -->
+    <div class="card course-section" id="section-assessment">
+      <div class="card-header">
+        <div class="card-title">Step 3 — Qualified Assessment</div>
+        <div class="card-heading">Final Assessment</div>
+      </div>
+      <div class="card-body">
+        <div class="assessment-intro">
+          <strong>Instructions:</strong> Select the best answer for each of the 10 questions below. You must score <strong>70% or higher (7 out of 10 correct)</strong> to receive CPE credit. You may attempt this assessment multiple times if needed.
+        </div>
+        <div id="qa-container"></div>
+        <div id="results-section">
+          <div id="score-display"></div>
+          <button class="submit-btn" onclick="retakeAssessment()" id="retake-btn" style="display:none;background:var(--gray-700)">
+            Retake Assessment
+          </button>
+          <button class="submit-btn" onclick="proceedToEvaluation()" id="proceed-eval-btn" style="display:none;margin-top:8px">
+            Continue to Course Evaluation →
+          </button>
+        </div>
+        <button class="submit-btn" id="submit-assessment-btn" onclick="submitAssessment()" disabled>
+          Submit Assessment
+        </button>
+      </div>
+    </div>
+
+    <!-- EVALUATION -->
+    <div class="card course-section" id="section-evaluation">
+      <div class="card-header">
+        <div class="card-title">Step 4</div>
+        <div class="card-heading">Course Evaluation</div>
+      </div>
+      <div class="card-body">
+        <p class="eval-intro">Your feedback helps us improve this program. Please rate each item on a scale of 1 (No, not at all) to 5 (Yes, absolutely).</p>
+        <div id="eval-container"></div>
+        <div class="eval-submitted" id="eval-submitted">
+          ✓ Thank you for your feedback! Proceeding to your certificate...
+        </div>
+      </div>
+    </div>
+
+    <!-- CERTIFICATE -->
+    <div class="card course-section" id="section-certificate">
+      <div class="card-header">
+        <div class="card-title">Step 5</div>
+        <div class="card-heading">Certificate of Completion</div>
+      </div>
+      <div class="card-body">
+        <div class="cert-wrapper" id="certificate">
+          <div class="cert-logo">CPA<span style="color:var(--blue-accent)">Club</span></div>
+          <div class="cert-nasba">Registered with NASBA as a Sponsor of Continuing Professional Education</div>
+          <div class="cert-title-sm">Certificate of Completion</div>
+          <div class="cert-main-title">Master QC 1000 Implementation<br>for Your Audit Firm</div>
+          <div class="cert-awarded">This certifies that</div>
+          <input class="cert-name-field" id="cert-name" type="text" placeholder="Enter your full name" />
+          <div class="cert-name-hint">Click to enter your name</div>
+          <div class="cert-details-grid">
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Field of Study</div>
+              <div class="cert-detail-value">Auditing</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">CPE Credits Earned</div>
+              <div class="cert-detail-value">1.0</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Completion Date</div>
+              <div class="cert-detail-value" id="cert-date">—</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Delivery Method</div>
+              <div class="cert-detail-value">QAS™ Self-Study</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Program Level</div>
+              <div class="cert-detail-value">Advanced</div>
+            </div>
+            <div class="cert-detail-item">
+              <div class="cert-detail-label">Score Achieved</div>
+              <div class="cert-detail-value" id="cert-score">—</div>
+            </div>
+          </div>
+          <div class="cert-signatures">
+            <div class="cert-sig">
+              <div class="cert-sig-line"></div>
+              <div class="cert-sig-name">Chris Vanover</div>
+              <div class="cert-sig-title">Principal, CPAClub</div>
+            </div>
+            <div class="cert-sig">
+              <div class="cert-sig-line"></div>
+              <div class="cert-sig-name">Ellen Sulistio</div>
+              <div class="cert-sig-title">Director of Operations, CPAClub</div>
+            </div>
+          </div>
+          <div class="cert-nasba-footer">
+            CPAClub is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State boards of accountancy have final authority on the acceptance of individual courses for CPE credit. Complaints may be submitted to the National Registry of CPE Sponsors through its website: nasbaregistry.org. · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="127160776552716273717e67703c716273">[email&#160;protected]</a> · cpaclub.cpa
+          </div>
+        </div>
+        <button class="print-btn" onclick="window.print()">⬇ Print / Save Certificate</button>
+      </div>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <div class="sidebar-card">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Navigation</div>
+        <div class="step-nav">
+          <button class="step-btn active" id="nav-video" onclick="goToSection('video')">
+            <div class="step-icon">1</div>Watch Recording
+          </button>
+          <button class="step-btn locked" id="nav-review" onclick="goToSection('review')">
+            <div class="step-icon">2</div>Review Questions
+          </button>
+          <button class="step-btn locked" id="nav-assessment" onclick="goToSection('assessment')">
+            <div class="step-icon">3</div>Qualified Assessment
+          </button>
+          <button class="step-btn locked" id="nav-evaluation" onclick="goToSection('evaluation')">
+            <div class="step-icon">4</div>Course Evaluation
+          </button>
+          <button class="step-btn locked" id="nav-certificate" onclick="goToSection('certificate')">
+            <div class="step-icon">5</div>Certificate
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Course Details</div>
+        <div class="detail-row"><span class="detail-key">Field of Study</span><span class="detail-val">Auditing</span></div>
+        <div class="detail-row"><span class="detail-key">Level</span><span class="detail-val">Advanced</span></div>
+        <div class="detail-row"><span class="detail-key">Credits</span><span class="detail-val">1.0 CPE</span></div>
+        <div class="detail-row"><span class="detail-key">Delivery</span><span class="detail-val">QAS™ Self-Study</span></div>
+        <div class="detail-row"><span class="detail-key">Pass Score</span><span class="detail-val">70% (7/10)</span></div>
+        <div class="detail-row"><span class="detail-key">Advance Prep</span><span class="detail-val">None</span></div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Prerequisites</div>
+        <p style="font-size:12px;color:var(--gray-600);line-height:1.6;">3–5 years public accounting experience with quality control or assurance practice management exposure. Working knowledge of professional standards.</p>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Featured Presenters</div>
+        <div class="instructor-item">
+          <div class="instructor-avatar" style="background:#1A3260">CV</div>
+          <div>
+            <div class="instructor-name">Chris Vanover, CPA</div>
+            <div class="instructor-role">Former PCAOB Director</div>
+          </div>
+        </div>
+        <div class="instructor-item">
+          <div class="instructor-avatar" style="background:#065F46">BY</div>
+          <div>
+            <div class="instructor-name">Brian Yujuico, CPA</div>
+            <div class="instructor-role">Former PwC Chief Auditor</div>
+          </div>
+        </div>
+        <div class="instructor-item">
+          <div class="instructor-avatar" style="background:#78350F">DC</div>
+          <div>
+            <div class="instructor-name">Drew Carrick, CPA</div>
+            <div class="instructor-role">Host</div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Content Reviewer</div>
+        <div class="instructor-item" style="margin-bottom:0;padding-bottom:0;border-bottom:none">
+          <div class="instructor-avatar" style="background:#4C1D95">ES</div>
+          <div>
+            <div class="instructor-name">Ellen Sulistio, CPA</div>
+            <div class="instructor-role">Former PwC & Deloitte — Big 4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Support</div>
+        <p style="font-size:12px;color:var(--gray-600);line-height:1.6;">Questions about this course? Contact CPAClub at <a href="/cdn-cgi/l/email-protection#e487968193a487948587889186ca879485" style="color:var(--blue-accent)"><span class="__cf_email__" data-cfemail="c3a0b1a6b483a0b3a2a0afb6a1eda0b3a2">[email&#160;protected]</span></a> or +1 949-876-7002.</p>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+
+</div><!-- /layout -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── DATA ──────────────────────────────────────────────────────────────
+
+const reviewQuestions = [
+  {
+    id: 'rq1',
+    lo: 'LO 1',
+    timing: '~12-minute mark',
+    context: 'After: Background and Context Segment',
+    question: 'QC 1000 was adopted by the PCAOB to replace which two predecessor quality control standards?',
+    options: ['AS 2101 and AS 2110', 'QC 20 and QC 25', 'SQMS No. 1 and SQMS No. 2', 'AS 2401 and QC 25'],
+    correct: 1,
+    correctFeedback: 'Correct! QC 1000 replaces QC 20 (System of Quality Control for a CPA Firm\'s Accounting and Auditing Practice) and QC 25 (Standards for Performing and Reporting on Peer Reviews). These were the PCAOB\'s predecessor quality control standards before QC 1000 was adopted.',
+    incorrectFeedback: 'Not quite. QC 1000 was adopted to replace QC 20 and QC 25 — the PCAOB\'s prior quality control standards. AS 2101 and AS 2110 are auditing standards, not quality control standards. SQMS No. 1 is the AICPA\'s quality management standard, which applies to non-PCAOB firms.'
+  },
+  {
+    id: 'rq2',
+    lo: 'LO 2',
+    timing: '~22-minute mark',
+    context: 'After: SQMS No. 1 vs. QC 1000 Comparison',
+    question: 'Which of the following represents a compliance obligation under QC 1000 that is NOT present in SQMS No. 1?',
+    options: ['Conducting a risk assessment to identify quality risks', 'Reviewing the quality control system annually', 'Communicating the results of the annual evaluation to the PCAOB', 'Designing responses to identified quality risks'],
+    correct: 2,
+    correctFeedback: 'Correct! Both QC 1000 and SQMS No. 1 require an annual evaluation of the quality control system. However, QC 1000 goes further by requiring PCAOB-registered firms to communicate the results of that evaluation to the PCAOB — an obligation that has no counterpart in SQMS No. 1.',
+    incorrectFeedback: 'Not quite. Options A, B, and D are common requirements shared by both QC 1000 and SQMS No. 1. The obligation unique to QC 1000 is the requirement to communicate the results of the annual evaluation to the PCAOB (Option C), reflecting QC 1000\'s regulatory context.'
+  },
+  {
+    id: 'rq3',
+    lo: 'LO 3',
+    timing: '~34-minute mark',
+    context: 'After: Purpose and Reasonable Assurance Discussion',
+    question: "A firm's quality control system under QC 1000 is designed to provide what level of assurance?",
+    options: ['Absolute assurance that all audit engagements will be free from deficiencies', 'Reasonable assurance that the firm and its personnel fulfill their responsibilities and that reports are appropriate', 'Limited assurance, sufficient only to satisfy PCAOB inspection requirements', 'Positive assurance that no material misstatements will be included in audited financial statements'],
+    correct: 1,
+    correctFeedback: 'Correct! QC 1000, consistent with other professional standards frameworks, provides for reasonable assurance — not absolute assurance. No quality control system can guarantee zero deficiencies, and the standard is calibrated accordingly.',
+    incorrectFeedback: 'Not quite. QC 1000 provides reasonable assurance — not absolute, limited, or positive assurance. Understanding this distinction is critical to avoiding one of the most common misconceptions about quality control systems: the belief that they can or should eliminate all audit failures.'
+  },
+  {
+    id: 'rq4',
+    lo: 'LO 4',
+    timing: '~44-minute mark',
+    context: 'After: Risk Assessment Segment',
+    question: 'After identifying quality risks in its risk assessment, a firm must:',
+    options: ['Report the identified risks to the PCAOB within 30 days', 'Design responses, such as policies and procedures, that address those risks to achieve the firm\'s quality objectives', 'Suspend operations in the affected area until the risk is remediated', 'Assign each risk to an engagement partner for individual remediation'],
+    correct: 1,
+    correctFeedback: 'Correct! The risk assessment process under QC 1000 is not an end in itself — it drives system design. Once quality risks are identified, firms must design responses (policies, procedures, and other actions) that address those risks and support achievement of the firm\'s quality objectives.',
+    incorrectFeedback: 'Not quite. Identifying risks is just the first step. Under QC 1000, the firm must then design responses — in the form of policies, procedures, and other actions — that address the identified risks and link back to the firm\'s quality objectives. Reporting risks to the PCAOB within 30 days, suspending operations, or individual remediation are not required by the standard.'
+  },
+  {
+    id: 'rq5',
+    lo: 'LO 5',
+    timing: '~54-minute mark',
+    context: 'After: Monitoring and Remediation Segment',
+    question: "After implementing its quality control system, a firm's ongoing responsibilities under QC 1000 include:",
+    options: ['Submitting the full QC system documentation to the PCAOB for annual re-approval', 'Monitoring the quality control system on an ongoing basis and remediating deficiencies when identified', 'Obtaining written consent from audit clients before performing internal quality reviews', 'Replacing all QC policies and procedures every three years regardless of effectiveness'],
+    correct: 1,
+    correctFeedback: 'Correct! Implementation is not the finish line. QC 1000 requires firms to establish ongoing monitoring processes to assess whether the system is functioning as intended, and remediation processes to address deficiencies when they are found.',
+    incorrectFeedback: 'Not quite. QC 1000 does not require annual PCAOB re-approval of QC documentation, client consent for internal reviews, or mandatory replacement of all policies on a fixed cycle. The ongoing obligations are monitoring (assessing whether the system is working) and remediation (fixing deficiencies when identified).'
+  }
+];
+
+const assessmentQuestions = [
+  {
+    lo: 'LO1',
+    question: 'QC 1000 was adopted by the PCAOB to replace which predecessor quality control standards?',
+    options: ['AS 2101 and AS 2110', 'QC 20 and QC 25', 'SQMS No. 1 and SQMS No. 2', 'AS 2901 and AS 6101'],
+    correct: 1
+  },
+  {
+    lo: 'LO1',
+    question: 'Which of the following best describes a key structural difference between SQMS No. 1 and QC 1000?',
+    options: ['SQMS No. 1 applies only to PCAOB-registered firms, while QC 1000 applies to all CPA firms.', 'QC 1000 includes PCAOB-specific requirements — such as annual reporting obligations to the PCAOB — that are not present in SQMS No. 1.', 'SQMS No. 1 uses a risk-based approach to quality management, while QC 1000 does not.', 'QC 1000 applies to all professional services engagements, while SQMS No. 1 is limited to audit.'],
+    correct: 1
+  },
+  {
+    lo: 'LO2',
+    question: 'Under QC 1000, which of the following is an annual compliance obligation specific to PCAOB-registered firms?',
+    options: ["Submission of the firm's full quality control system documentation to the PCAOB for pre-approval.", "Evaluation of the firm's quality control system and communication of results to the PCAOB.", 'External peer review of all issuer audit engagements.', 'Recertification of engagement quality reviewers.'],
+    correct: 1
+  },
+  {
+    lo: 'LO2',
+    question: 'The annual evaluation required under QC 1000 is primarily designed to:',
+    options: ["Determine whether the firm should retain its PCAOB registration for the upcoming year.", "Assess whether the firm's quality control system is suitably designed and operating effectively.", 'Replace the need for engagement-level quality reviews during the evaluation period.', 'Satisfy state board continuing education requirements for firm personnel.'],
+    correct: 1
+  },
+  {
+    lo: 'LO3',
+    question: 'The fundamental purpose of a firm-level quality control system under QC 1000 is to provide:',
+    options: ['Absolute assurance that all audit engagements are free from material misstatement.', 'Reasonable assurance that the firm and its personnel comply with applicable standards and that reports issued are appropriate.', 'A standardized set of audit procedures to be applied across all engagement teams.', 'A substitute for individual engagement partner accountability on PCAOB engagements.'],
+    correct: 1
+  },
+  {
+    lo: 'LO3',
+    question: 'Which of the following is a common misconception about quality control systems that QC 1000 and the panel discussion directly address?',
+    options: ['Firms must implement both SQMS No. 1 and QC 1000 simultaneously.', 'A quality control system can provide absolute assurance against audit failures.', 'QC 1000 only applies to firms with more than 100 audit clients.', 'The PCAOB requires annual quality control system reviews by independent third parties.'],
+    correct: 1
+  },
+  {
+    lo: 'LO4',
+    question: 'After identifying quality risks through the risk assessment process, QC 1000 requires firms to:',
+    options: ['Report identified risks to the PCAOB within 30 days.', 'Design responses — including policies and procedures — that address those risks in order to achieve the firm\'s quality objectives.', 'Establish a separate quality control committee for each category of identified risk.', 'Obtain client consent before implementing internal quality controls related to their engagements.'],
+    correct: 1
+  },
+  {
+    lo: 'LO4',
+    question: "Under QC 1000's risk-based framework, a firm's quality objectives serve as:",
+    options: ['Aspirational targets that do not directly influence the design of the quality control system.', 'The basis against which quality risks are identified and to which system design responses are aligned.', 'Reporting thresholds that trigger mandatory PCAOB notification when not met.', 'Minimum staffing requirements for each component of the quality control system.'],
+    correct: 1
+  },
+  {
+    lo: 'LO5',
+    question: 'After implementing its quality control system under QC 1000, a firm must establish processes for:',
+    options: ['Distributing updated quality control manuals to all professional staff on an annual basis.', 'Monitoring the quality control system on an ongoing basis and remediating identified deficiencies.', 'Obtaining written client consent before conducting internal quality reviews related to their engagements.', 'Reporting all quality deficiencies identified to the SEC within 60 days.'],
+    correct: 1
+  },
+  {
+    lo: 'LO5',
+    question: 'The monitoring and remediation component of QC 1000 is primarily designed to help firms:',
+    options: ['Comply with GAAP disclosure requirements for quality-related expenses on the income statement.', 'Continuously evaluate the effectiveness of the QC system and take corrective action when deficiencies are identified.', 'Reduce the frequency of PCAOB inspections through demonstrated regulatory compliance.', 'Assign individual liability to engagement partners when audit deficiencies are found.'],
+    correct: 1
+  }
+];
+
+const evalQuestions = [
+  { id: 'e1', text: 'Were the stated learning objectives met?' },
+  { id: 'e2', text: 'Were the stated prerequisite requirements appropriate and sufficient?' },
+  { id: 'e3', text: 'Were program materials, including the qualified assessment, relevant and did they contribute to the achievement of the learning objectives?' },
+  { id: 'e4', text: 'Was the time allotted to the learning activity appropriate?' },
+  { id: 'e5', text: 'Was the presenter Brian Yujuico effective?' },
+  { id: 'e6', text: 'Was the presenter Drew Carrick effective?' },
+  { id: 'e7', text: 'Was the presenter Chris Vanover effective?' }
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────
+const state = {
+  videoComplete: false,
+  reviewAnswered: 0,
+  assessmentScore: null,
+  assessmentPassed: false,
+  evalComplete: false,
+  currentSection: 'video',
+  unlockedSections: ['video']
+};
+
+const letters = ['A', 'B', 'C', 'D'];
+
+// ── RENDER REVIEW QUESTIONS ──────────────────────────────────────────
+function renderReviewQuestions() {
+  const container = document.getElementById('review-questions-container');
+  container.innerHTML = reviewQuestions.map((q, i) => `
+    <div class="rq-item" id="rq-item-${i}">
+      <div class="rq-header">
+        <span class="rq-label">Review Question ${i + 1} · ${q.lo}</span>
+        <span class="rq-timing">${q.timing} · ${q.context}</span>
+      </div>
+      <div class="rq-body">
+        <p class="rq-question">${q.question}</p>
+        <div class="rq-options">
+          ${q.options.map((opt, j) => `
+            <button class="rq-option" onclick="answerReview(${i}, ${j})" id="rq-${i}-opt-${j}">
+              <span class="opt-letter">${letters[j]}.</span>
+              <span>${opt}</span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="rq-feedback" id="rq-${i}-feedback"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function answerReview(qIdx, optIdx) {
+  const q = reviewQuestions[qIdx];
+  const correct = optIdx === q.correct;
+
+  // Lock all options
+  q.options.forEach((_, j) => {
+    const btn = document.getElementById(`rq-${qIdx}-opt-${j}`);
+    btn.classList.add('disabled');
+    if (j === q.correct) btn.classList.add('correct', 'show');
+    else if (j === optIdx && !correct) btn.classList.add('incorrect', 'show');
+  });
+
+  // Show feedback
+  const fb = document.getElementById(`rq-${qIdx}-feedback`);
+  fb.textContent = correct ? `✓ ${q.correctFeedback}` : `✗ ${q.incorrectFeedback}`;
+  fb.className = `rq-feedback ${correct ? 'correct' : 'incorrect'}`;
+
+  state.reviewAnswered++;
+  if (state.reviewAnswered === reviewQuestions.length) {
+    document.getElementById('proceed-to-assessment').style.display = 'block';
+    updateProgress();
+  }
+}
+
+// ── RENDER ASSESSMENT ─────────────────────────────────────────────────
+function renderAssessment() {
+  const container = document.getElementById('qa-container');
+  container.innerHTML = assessmentQuestions.map((q, i) => `
+    <div class="qa-item">
+      <span class="qa-num">Question ${i + 1} of 10 · ${q.lo}</span>
+      <p class="qa-question">${q.question}</p>
+      <div class="qa-options">
+        ${q.options.map((opt, j) => `
+          <button class="qa-option" onclick="selectAnswer(${i}, ${j})" id="qa-${i}-opt-${j}">
+            <span class="opt-letter">${letters[j]}.</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+let answers = new Array(10).fill(null);
+
+function selectAnswer(qIdx, optIdx) {
+  // Clear previous selection
+  assessmentQuestions[qIdx].options.forEach((_, j) => {
+    document.getElementById(`qa-${qIdx}-opt-${j}`).classList.remove('selected');
+  });
+  document.getElementById(`qa-${qIdx}-opt-${optIdx}`).classList.add('selected');
+  answers[qIdx] = optIdx;
+
+  // Enable submit if all answered
+  if (answers.every(a => a !== null)) {
+    document.getElementById('submit-assessment-btn').disabled = false;
+  }
+}
+
+function submitAssessment() {
+  let score = 0;
+  assessmentQuestions.forEach((q, i) => {
+    const selected = answers[i];
+    assessmentQuestions[i].options.forEach((_, j) => {
+      const btn = document.getElementById(`qa-${i}-opt-${j}`);
+      btn.classList.add('locked');
+      if (j === q.correct) btn.classList.add('reveal-correct');
+      else if (j === selected && selected !== q.correct) btn.classList.add('reveal-wrong');
+    });
+    if (selected === q.correct) score++;
+  });
+
+  state.assessmentScore = score;
+  state.assessmentPassed = score >= 7;
+
+  const pct = Math.round((score / 10) * 100);
+  const pass = state.assessmentPassed;
+
+  document.getElementById('score-display').innerHTML = `
+    <div class="score-card ${pass ? 'pass' : 'fail'}">
+      <div class="score-icon">${pass ? '✓' : '✗'}</div>
+      <div class="score-number">${pct}%</div>
+      <div class="score-label">${pass ? 'Congratulations — you passed!' : 'Not quite — please try again.'}</div>
+      <div class="score-sub">${score} out of 10 correct · Passing score: 70% (7/10)</div>
+    </div>
+  `;
+
+  document.getElementById('results-section').classList.add('active');
+  document.getElementById('submit-assessment-btn').style.display = 'none';
+
+  if (pass) {
+    document.getElementById('cert-score').textContent = `${pct}% (${score}/10)`;
+    document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('proceed-eval-btn').style.display = 'block';
+    unlockSection('evaluation');
+  } else {
+    document.getElementById('retake-btn').style.display = 'block';
+  }
+
+  updateProgress();
+}
+
+function retakeAssessment() {
+  answers = new Array(10).fill(null);
+  renderAssessment();
+  document.getElementById('results-section').classList.remove('active');
+  document.getElementById('submit-assessment-btn').style.display = 'block';
+  document.getElementById('submit-assessment-btn').disabled = true;
+  document.getElementById('retake-btn').style.display = 'none';
+  document.getElementById('proceed-eval-btn').style.display = 'none';
+}
+
+// ── RENDER EVALUATION ─────────────────────────────────────────────────
+function renderEvaluation() {
+  const container = document.getElementById('eval-container');
+  container.innerHTML = evalQuestions.map((q, i) => `
+    <div class="eval-question">
+      <p class="eval-q-text">${i + 1}. ${q.text}</p>
+      <div class="likert-scale">
+        ${[1,2,3,4,5].map(n => `
+          <button class="likert-opt" onclick="selectLikert('${q.id}', ${n}, this)" id="likert-${q.id}-${n}">${n}</button>
+        `).join('')}
+      </div>
+      <div class="likert-labels"><span>No, not at all.</span><span>Yes, absolutely.</span></div>
+    </div>
+  `).join('') + `
+    <div class="eval-question">
+      <p class="eval-q-text">8. Other comments?</p>
+      <textarea class="eval-textarea" id="eval-comments" placeholder="Optional"></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitEvaluation()" style="margin-top:8px">Submit Evaluation →</button>
+  `;
+}
+
+const likertAnswers = {};
+function selectLikert(qId, val, btn) {
+  [1,2,3,4,5].forEach(n => {
+    document.getElementById(`likert-${qId}-${n}`).classList.remove('selected');
+  });
+  btn.classList.add('selected');
+  likertAnswers[qId] = val;
+}
+
+function submitEvaluation() {
+  state.evalComplete = true;
+  document.getElementById('eval-submitted').style.display = 'block';
+  unlockSection('certificate');
+  updateProgress();
+  setTimeout(() => goToSection('certificate'), 1800);
+}
+
+// ── NAV & SECTIONS ─────────────────────────────────────────────────────
+function goToSection(name) {
+  if (!state.unlockedSections.includes(name)) return;
+  state.currentSection = name;
+
+  document.querySelectorAll('.course-section').forEach(s => s.classList.remove('active'));
+  document.getElementById(`section-${name}`).classList.add('active');
+
+  document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(`nav-${name}`).classList.add('active');
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function unlockSection(name) {
+  if (!state.unlockedSections.includes(name)) {
+    state.unlockedSections.push(name);
+  }
+  const btn = document.getElementById(`nav-${name}`);
+  btn.classList.remove('locked');
+}
+
+function markNavComplete(name) {
+  const btn = document.getElementById(`nav-${name}`);
+  btn.classList.remove('active', 'locked');
+  btn.classList.add('complete');
+  btn.querySelector('.step-icon').textContent = '✓';
+}
+
+// ── VIDEO COMPLETE ─────────────────────────────────────────────────────
+function completeVideo() {
+  state.videoComplete = true;
+  unlockSection('review');
+  markNavComplete('video');
+  updateProgress();
+  goToSection('review');
+}
+
+function proceedToAssessment() {
+  unlockSection('assessment');
+  markNavComplete('review');
+  updateProgress();
+  goToSection('assessment');
+}
+
+function proceedToEvaluation() {
+  markNavComplete('assessment');
+  goToSection('evaluation');
+}
+
+// ── PROGRESS ──────────────────────────────────────────────────────────
+function updateProgress() {
+  let pct = 0;
+  if (state.videoComplete) pct += 20;
+  if (state.reviewAnswered === 5) pct += 20;
+  if (state.assessmentPassed) pct += 30;
+  if (state.evalComplete) pct += 20;
+  if (state.evalComplete && state.assessmentPassed) pct += 10;
+
+  document.getElementById('progress-fill').style.width = pct + '%';
+  docume
