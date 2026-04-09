@@ -1573,4 +1573,14 @@ function updateProgress() {
   if (state.evalComplete && state.assessmentPassed) pct += 10;
 
   document.getElementById('progress-fill').style.width = pct + '%';
-  docume
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+renderReviewQuestions();
+renderAssessment();
+renderEvaluation();
+</script>
+
+</body>
+</html>
