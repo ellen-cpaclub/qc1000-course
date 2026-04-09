@@ -164,7 +164,6 @@
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    overflow: hidden;
   }
 
   .card-header {
@@ -1044,57 +1043,42 @@
         <div class="card-heading">Certificate of Completion</div>
       </div>
       <div class="card-body">
-        <div class="cert-wrapper" id="certificate">
-          <div class="cert-logo">CPA<span style="color:var(--blue-accent)">Club</span></div>
-          <div class="cert-nasba">Registered with NASBA as a Sponsor of Continuing Professional Education</div>
-          <div class="cert-title-sm">Certificate of Completion</div>
-          <div class="cert-main-title">Master QC 1000 Implementation<br>for Your Audit Firm</div>
-          <div class="cert-awarded">This certifies that</div>
-          <input class="cert-name-field" id="cert-name" type="text" placeholder="Enter your full name" />
-          <div class="cert-name-hint">Click to enter your name</div>
-          <div class="cert-details-grid">
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">Field of Study</div>
-              <div class="cert-detail-value">Auditing</div>
-            </div>
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">CPE Credits Earned</div>
-              <div class="cert-detail-value">1.0</div>
-            </div>
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">Completion Date</div>
-              <div class="cert-detail-value" id="cert-date">—</div>
-            </div>
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">Delivery Method</div>
-              <div class="cert-detail-value">QAS™ Self-Study</div>
-            </div>
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">Program Level</div>
-              <div class="cert-detail-value">Advanced</div>
-            </div>
-            <div class="cert-detail-item">
-              <div class="cert-detail-label">Score Achieved</div>
-              <div class="cert-detail-value" id="cert-score">—</div>
-            </div>
-          </div>
-          <div class="cert-signatures">
-            <div class="cert-sig">
-              <div class="cert-sig-line"></div>
-              <div class="cert-sig-name">Chris Vanover</div>
-              <div class="cert-sig-title">Principal, CPAClub</div>
-            </div>
-            <div class="cert-sig">
-              <div class="cert-sig-line"></div>
-              <div class="cert-sig-name">Ellen Sulistio</div>
-              <div class="cert-sig-title">Director of Operations, CPAClub</div>
-            </div>
-          </div>
-          <div class="cert-nasba-footer">
-            CPAClub is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State boards of accountancy have final authority on the acceptance of individual courses for CPE credit. Complaints may be submitted to the National Registry of CPE Sponsors through its website: nasbaregistry.org. · +1 949-876-7002 · cpaclub.cpa
-          </div>
+
+        <!-- SAMPLE BANNER -->
+        <div style="background:#FEF3C7;border:1.5px solid #F59E0B;border-radius:10px;padding:14px 20px;margin-bottom:20px;font-size:13px;color:#78350F;text-align:center;font-weight:500;">
+          ⚠ This is a <strong>sample certificate</strong> generated for QAS review purposes only. In production, this certificate would be issued to the learner upon successful course completion.
         </div>
-        <button class="print-btn" onclick="window.print()">⬇ Print / Save Certificate</button>
+
+
+        <hr>
+        <p><strong>CPACLUB</strong></p>
+        <p><em>— SAMPLE CERTIFICATE — For QAS Review Purposes Only —</em></p>
+        <br>
+        <p style="font-size:20px;font-weight:bold;text-align:center;">Certificate of Completion</p>
+        <p style="text-align:center;">This certificate is presented to</p>
+        <p style="font-size:20px;font-style:italic;text-align:center;border-bottom:1px solid #ccc;padding-bottom:8px;">[ Learner Name ]</p>
+        <p style="text-align:center;">For successful completion of</p>
+        <p style="font-size:16px;font-weight:bold;text-align:center;border-bottom:1px solid #ccc;padding-bottom:16px;">Master QC 1000 Implementation for Your Audit Firm</p>
+        <br>
+        <p><strong>Field(s) of study for the program:</strong> Auditing</p>
+        <p><strong>Date program offered/completed:</strong> April 9, 2026</p>
+        <p><strong>Amount of CPE earned:</strong> 1.0</p>
+        <p>In accordance with the standards of the National Registry of CPE Sponsors, CPE credits have been granted based on a 50-minute hour.</p>
+        <p><strong>Location of program:</strong> Virtual</p>
+        <p><strong>Instructional delivery method:</strong> QAS Self-Study</p>
+        <p><strong>Registry Sponsor ID number:</strong> 149131</p>
+        <br>
+        <p><em>CPA Club Inc. is registered with the National Association of State Boards of Accountancy (NASBA) as a sponsor of continuing professional education on the National Registry of CPE Sponsors. State boards of accountancy have the final authority on the acceptance of individual courses for CPE credit. Complaints regarding registered sponsors may be submitted to the National Registry of CPE Sponsors through its website: https://www.nasbaregistry.org</em></p>
+        <br>
+        <p style="font-size:22px;font-style:italic;font-family:Georgia,serif;">Ellen Sulistio</p>
+        <p><strong>Ellen Sulistio, CPA</strong></p>
+        <p>Vice President, CPAClub</p>
+        <p><em>Signature of individual responsible for the administration of continuing education</em></p>
+        <br>
+        <hr>
+        <p style="font-size:11px;text-align:right;">100 Spectrum Center Drive, Suite 1480, Irvine, California 92618 | info@cpaclub.cpa | www.cpaclub.cpa</p>
+
+        <button class="print-btn" onclick="window.print()" style="margin-top:16px;">⬇ Print / Save Certificate</button>
       </div>
     </div>
 
@@ -1334,6 +1318,11 @@ const state = {
   currentSection: 'video',
   unlockedSections: ['video']
 };
+
+// Pre-populate certificate date
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('cert-date') && (document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+});
 
 const letters = ['A', 'B', 'C', 'D'];
 
