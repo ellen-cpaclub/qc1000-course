@@ -1446,6 +1446,9 @@ function submitAssessment() {
     document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById('proceed-eval-btn').style.display = 'block';
     unlockSection('evaluation');
+    setTimeout(() => {
+      proceedToEvaluation();
+    }, 3000);
   } else {
     document.getElementById('retake-btn').style.display = 'block';
   }
