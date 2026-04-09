@@ -1442,8 +1442,6 @@ function submitAssessment() {
   document.getElementById('submit-assessment-btn').style.display = 'none';
 
   if (pass) {
-    document.getElementById('cert-score').textContent = `${pct}% (${score}/10)`;
-    document.getElementById('cert-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById('proceed-eval-btn').style.display = 'block';
     unlockSection('evaluation');
     setTimeout(() => {
