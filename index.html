@@ -1484,9 +1484,8 @@ function renderEvaluation() {
       <p class="eval-q-text">8. Other comments?</p>
       <textarea class="eval-textarea" id="eval-comments" placeholder="Optional"></textarea>
     </div>
-    <button class="submit-btn" id="submit-eval-btn" style="margin-top:8px">Submit Evaluation →</button>
+    <button class="submit-btn" id="submit-eval-btn" style="margin-top:8px" onclick="submitEvaluation()">Submit Evaluation →</button>
   `;
-  document.getElementById('submit-eval-btn').addEventListener('click', submitEvaluation);
 }
 
 const likertAnswers = {};
@@ -1503,7 +1502,15 @@ function submitEvaluation() {
   document.getElementById('eval-submitted').style.display = 'block';
   unlockSection('certificate');
   updateProgress();
-  setTimeout(() => goToSection('certificate'), 1800);
+  setTimeout(function() {
+    state.unlockedSections.push('certificate');
+    document.querySelectorAll('.course-section').forEach(function(s) { s.classList.remove('active'); });
+    document.getElementById('section-certificate').classList.add('active');
+    document.querySelectorAll('.step-btn').forEach(function(b) { b.classList.remove('active'); });
+    document.getElementById('nav-certificate').classList.remove('locked');
+    document.getElementById('nav-certificate').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 2000);
 }
 
 // ── NAV & SECTIONS ─────────────────────────────────────────────────────
