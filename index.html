@@ -1484,8 +1484,9 @@ function renderEvaluation() {
       <p class="eval-q-text">8. Other comments?</p>
       <textarea class="eval-textarea" id="eval-comments" placeholder="Optional"></textarea>
     </div>
-    <button class="submit-btn" onclick="submitEvaluation()" style="margin-top:8px">Submit Evaluation →</button>
+    <button class="submit-btn" id="submit-eval-btn" style="margin-top:8px">Submit Evaluation →</button>
   `;
+  document.getElementById('submit-eval-btn').addEventListener('click', submitEvaluation);
 }
 
 const likertAnswers = {};
