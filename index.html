@@ -1237,6 +1237,33 @@
     </div>
 
     <div class="sidebar-card">
+      <div class="sidebar-section" style="padding-bottom:0;">
+        <button onclick="toggleGlossary()" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;padding:0;margin-bottom:14px;">
+          <div class="sidebar-label" style="margin-bottom:0;">Glossary of Key Terms</div>
+          <span id="glossary-chevron" style="font-size:14px;color:var(--gray-400);transition:transform 0.2s ease;">▼</span>
+        </button>
+        <div id="glossary-panel" style="display:none;padding-bottom:16px;">
+          <div style="font-size:12px;color:var(--gray-700);line-height:1.8;">
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">QC 1000</strong> — PCAOB's quality control standard, effective December 15, 2026, replacing QC 20 and QC 25.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">SQMS No. 1</strong> — The AICPA's quality management standard for non-PCAOB-registered firms, effective December 15, 2025.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">PCAOB</strong> — Public Company Accounting Oversight Board; oversees audits of public companies and SEC-registered brokers/dealers.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">QC 20 / QC 25</strong> — PCAOB's predecessor quality control standards superseded by QC 1000.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Form QC</strong> — Annual filing unique to QC 1000 in which PCAOB-registered firms attest to their quality control system design, monitoring results, and self-reported deficiencies.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Quality Control System</strong> — A firm's integrated set of policies, procedures, and responses designed to provide reasonable assurance that the firm and its personnel comply with professional standards.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Reasonable Assurance</strong> — A high, but not absolute, level of assurance; the standard of assurance QC 1000 requires of a firm's quality control system.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Quality Objectives</strong> — Firm-level goals that define what the quality control system is designed to achieve; the basis against which quality risks are identified.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Quality Risks</strong> — Threats to the achievement of a firm's quality objectives; identified through the firm's risk assessment process.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Risk Assessment Process</strong> — The process by which a firm identifies quality risks and designs responses to address them.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Monitoring</strong> — Ongoing evaluation of whether the firm's quality control system is suitably designed and operating effectively.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Remediation</strong> — Corrective action taken to address deficiencies identified through the monitoring process.</p>
+            <p style="margin-bottom:6px;"><strong style="color:var(--navy);">Engagement Quality Review (EQR)</strong> — An objective evaluation of significant judgments made by the engagement team before the report is issued.</p>
+            <p style="margin-bottom:0;"><strong style="color:var(--navy);">Annual Evaluation</strong> — The annual assessment required under QC 1000 in which a firm evaluates whether its quality control system is suitably designed and operating effectively, with results communicated to the PCAOB.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
       <div class="sidebar-section">
         <div class="sidebar-label">Support</div>
         <p style="font-size:12px;color:var(--gray-600);line-height:1.6;">Questions about this course? Contact CPAClub at +1 949-876-7002.</p>
@@ -1621,6 +1648,15 @@ function updateProgress() {
 
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+// ── GLOSSARY TOGGLE ───────────────────────────────────────────
+function toggleGlossary() {
+  const panel = document.getElementById('glossary-panel');
+  const chevron = document.getElementById('glossary-chevron');
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────
