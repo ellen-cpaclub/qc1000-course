@@ -1177,7 +1177,7 @@
 
       <!-- PUBLICATION / REVIEW DATE -->
       <div class="card-body" style="padding-top:12px;padding-bottom:0;">
-        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 29, 2026 &nbsp; Last Revision Date: April 30, 2026</div>
+        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 28, 2026|&nbsp; Last Revision Date: April 30, 2026</div>
       </div>
 
       <!-- LEARNING OBJECTIVES -->
@@ -1664,12 +1664,12 @@ const reviewQuestions = [
     question: 'According to the panel discussion, how often must Form QC be filed under PCAOB QC 1000?',
     options: ['Only upon adoption of QC 1000', 'Every three years', 'Annually', 'Only when deficiencies are identified'],
     correct: 2,
-    correctFeedback: 'Correct! Under PCAOB QC 1000, firms are required to file Form QC every year. Form QC is an annual filing requirement, introduced by the PCAOB, and firms must submit it on a recurring basis rather than as a one-time or event-triggered filing.',
+    correctFeedback: 'Correct! Under PCAOB QC 1000, firms are required to file Form QC every year. Brian described it as an ongoing annual obligation — not a one-time or event-triggered filing — that firms must submit on a recurring basis as long as they remain registered with the PCAOB.',
     optionFeedback: [
-      'Not quite. Brian described Form QC as an annual requirement, not a one-time filing associated with the initial adoption of QC 1000. Firms must submit it on an ongoing basis.',
-      'Not quite. Form QC is not filed on a three-year cycle. The panel was clear that it is an annual filing requirement under QC 1000.',
+      'Incorrect. Form QC is not a one-time filing tied to a firm\u2019s initial adoption of QC 1000. Brian explained that the filing obligation continues every year after adoption, regardless of whether the standard is new to the firm.',
+      'Incorrect. Form QC does not follow a three-year cycle. Unlike some other regulatory filings that operate on multi-year schedules, the panel described Form QC as an annual requirement that recurs each year a firm remains PCAOB-registered.',
       '',
-      'Not quite. Form QC is not deficiency-triggered. The panel described it as an annual filing requirement that firms must submit on an ongoing basis, regardless of whether deficiencies have been identified.'
+      'Incorrect. Form QC is not triggered only when deficiencies are found. The panel was clear that it is an annual filing requirement applicable to all registered firms, and it must be submitted regardless of whether the firm\u2019s monitoring process identified any deficiencies.'
     ]
   },
   {
@@ -1684,12 +1684,12 @@ const reviewQuestions = [
       'By limiting risk assessments to individual audit engagements'
     ],
     correct: 1,
-    correctFeedback: 'Correct! The panel explains that QC 1000 requires firms to follow a risk-based approach by first performing a firm-level assessment of quality risks based on their specific facts and circumstances. Once risks are identified, firms are required to design and implement policies and procedures that respond to those risks. This approach is described as analogous to how auditors assess and respond to risks in an audit.',
+    correctFeedback: 'Correct! The panel explained that QC 1000 requires a risk-based approach in which firms first perform a firm-level assessment to identify their specific quality risks, and then design policies and procedures as direct responses to those identified risks. Brian compared this process to how auditors assess and respond to risks on individual engagements — but applied at the firm level.',
     optionFeedback: [
-      'Not quite. The panel explains that QC 1000 requires firms to take a risk-based approach at the firm level, rather than applying a standardized set of controls prescribed uniformly to all firms.',
+      'Incorrect. QC 1000 does not prescribe a uniform set of controls that all firms must apply identically. Brian explained that the standard takes a risk-based approach — each firm must assess its own specific facts and circumstances and design controls that respond to the risks unique to that firm.',
       '',
-      'Not quite. The panel explains that QC 1000 requires firms to take a risk-based approach at the firm level, rather than relying primarily on PCAOB inspection findings to determine quality controls.',
-      'Not quite. The panel explains that QC 1000 requires firms to take a risk-based approach at the firm level, rather than limiting risk assessments to individual audit engagements.'
+      'Incorrect. While PCAOB inspection findings may inform a firm\u2019s awareness of quality issues, QC 1000 does not direct firms to rely primarily on inspection results when designing their quality controls. The standard requires firms to proactively conduct their own risk assessments rather than reactively build controls around past inspection findings.',
+      'Incorrect. QC 1000 requires risk assessments at the firm level — not just at the level of individual engagements. Brian distinguished the firm-wide quality control system from engagement-level procedures, explaining that QC 1000 obligates firms to assess and address quality risks across the entire firm, not only within specific audits.'
     ]
   },
   {
@@ -1699,12 +1699,12 @@ const reviewQuestions = [
     question: 'According to the panel discussion, how many years does the PCAOB require firms to retain QC-related documentation?',
     options: ['3 years', '5 years', '7 years', '10 years'],
     correct: 2,
-    correctFeedback: 'Correct! Brian noted that the PCAOB requires document retention for seven years — one of the reasons he emphasized that Excel alone is not a sufficient solution for ongoing QC monitoring and documentation.',
+    correctFeedback: 'Correct! Brian specifically noted that the PCAOB requires firms to retain QC-related documentation for seven years. He used this requirement as a key reason why purpose-built software solutions are necessary — because tools like Excel and SharePoint are not equipped to reliably manage documentation over a seven-year horizon.',
     optionFeedback: [
-      'Not quite. Three years is below the PCAOB\u2019s document retention requirement. Brian specifically cited seven years, which is one reason why purpose-built software solutions are necessary rather than relying on Excel.',
-      'Not quite. While five years is a common retention period for other regulatory purposes, Brian specifically noted that the PCAOB requires seven years for QC-related documentation.',
+      'Incorrect. A three-year retention period falls well short of what the PCAOB requires. Brian specifically cited a seven-year documentation retention requirement under QC 1000, and used this as one of the reasons why firms cannot rely on tools like Excel or SharePoint to manage their QC records long-term.',
+      'Incorrect. While five years is a common record retention period in other regulatory contexts, it does not satisfy the PCAOB\u2019s requirement under QC 1000. Brian stated that the PCAOB requires seven years of retention for QC-related documentation — two years more than a five-year period would provide.',
       '',
-      'Not quite. Ten years exceeds the PCAOB requirement. Brian specifically cited seven years as the document retention requirement, which already necessitates more robust solutions than Excel or SharePoint.'
+      'Incorrect. Ten years exceeds the PCAOB\u2019s actual documentation retention requirement. Brian cited seven years as the specific requirement — not ten. Overstating the retention period does not reflect what was communicated in the panel discussion.'
     ]
   }
 ];
@@ -1807,14 +1807,16 @@ function answerReview(qIdx, optIdx) {
     else if (j === optIdx && !correct) btn.classList.add('incorrect', 'show');
   });
 
-  // Show feedback — per S9-03, show specific feedback for the selected wrong answer
+  // Show feedback — per NASBA S9-03: specific feedback for each individual answer choice
   const fb = document.getElementById(`rq-${qIdx}-feedback`);
   if (correct) {
     fb.textContent = `\u2713 ${q.correctFeedback}`;
     fb.className = `rq-feedback correct`;
   } else {
-    const specificFeedback = q.optionFeedback && q.optionFeedback[optIdx] ? q.optionFeedback[optIdx] : `Not quite. The correct answer is ${letters[q.correct]}.`;
-    fb.textContent = `\u2717 ${specificFeedback}`;
+    const specificFeedback = q.optionFeedback && q.optionFeedback[optIdx]
+      ? q.optionFeedback[optIdx]
+      : `Incorrect. The correct answer is ${letters[q.correct]}.`;
+    fb.textContent = `\u2717 Answer ${letters[optIdx]}: ${specificFeedback}`;
     fb.className = `rq-feedback incorrect`;
   }
 
