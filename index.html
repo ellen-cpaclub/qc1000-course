@@ -898,13 +898,211 @@
   }
 
   @media print {
-    .site-header, .sidebar, .course-header, .step-nav, #section-video, #section-review, #section-evaluation { display: none !important; }
+    .site-header, .sidebar, .course-header, .step-nav, #section-admin, #section-video, #section-review, #section-evaluation { display: none !important; }
     #section-certificate { display: block !important; }
     .layout { display: block; max-width: 100%; padding: 0; }
     .main-col { gap: 0; }
     .card { box-shadow: none; border: none; }
     .print-btn { display: none; }
   }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 13px;
+  }
+  .toc-num {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .toc-info {}
+  .toc-title { font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .toc-time { font-size: 11px; color: var(--gray-500); }
+
+  /* ── ALPHABETICAL INDEX ── */
+  .index-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .index-search-bar:focus-within { border-color: var(--blue-accent); }
+  .index-search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--gray-900);
+    outline: none;
+  }
+  .index-search-input::placeholder { color: var(--gray-400); }
+
+  .index-letter-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 16px;
+  }
+  .letter-btn {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--white);
+    color: var(--gray-500);
+    transition: all 0.15s;
+  }
+  .letter-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .letter-btn.has-entries { color: var(--navy); border-color: var(--gray-300); }
+  .letter-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+  .letter-btn.disabled-letter { opacity: 0.3; cursor: default; }
+
+  .index-letter-section { margin-bottom: 20px; }
+  .index-letter-heading {
+    font-family: var(--serif);
+    font-size: 20px;
+    color: var(--navy);
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 4px;
+    margin-bottom: 10px;
+    display: inline-block;
+    min-width: 28px;
+  }
+  .index-entries { display: flex; flex-direction: column; gap: 6px; }
+  .index-entry {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1px solid transparent;
+  }
+  .index-entry:hover { background: var(--blue-light); border-color: #BFDBFE; }
+  .index-term { font-weight: 600; color: var(--navy); }
+  .index-timestamps {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .ts-badge {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .index-no-results {
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 14px;
+    padding: 24px;
+  }
+
+  /* ── SEARCHABLE TRANSCRIPT ── */
+  .transcript-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray-50);
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 4px;
+    transition: border-color 0.15s;
+  }
+  .transcript-search-bar:focus-within { border-color: var(--blue-accent); }
+  .transcript-search-input {
+    flex: 1;
+    border: none;
+    background: none;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--gray-900);
+    outline: none;
+  }
+  .transcript-search-input::placeholder { color: var(--gray-400); }
+  .transcript-hint {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-bottom: 12px;
+  }
+  .transcript-results-count {
+    font-size: 12px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 10px;
+    min-height: 18px;
+  }
+  .transcript-scroll {
+    max-height: 420px;
+    overflow-y: auto;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    background: var(--gray-50);
+  }
+  .transcript-block {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray-200);
+    font-size: 13px;
+    line-height: 1.6;
+    transition: background 0.1s;
+  }
+  .transcript-block:last-child { border-bottom: none; }
+  .transcript-block.highlight { background: #FFFBEB; }
+  .transcript-block.hidden { display: none; }
+  .transcript-ts {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--blue-accent);
+    white-space: nowrap;
+    margin-top: 3px;
+    min-width: 38px;
+  }
+  .transcript-text { color: var(--gray-700); }
+  .transcript-text mark {
+    background: #FDE68A;
+    color: #78350F;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+  @media (max-width: 768px) {
+    .toc-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 </head>
 <body>
@@ -953,45 +1151,33 @@
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
         <div class="progress-steps" id="progress-steps">
-          <div class="step-dot"><div class="dot active" id="dot-1"></div>Video</div>
-          <div class="step-dot"><div class="dot" id="dot-2"></div>Review Q's</div>
-          <div class="step-dot"><div class="dot" id="dot-3"></div>Assessment</div>
-          <div class="step-dot"><div class="dot" id="dot-4"></div>Evaluation</div>
-          <div class="step-dot"><div class="dot" id="dot-5"></div>Certificate</div>
+          <div class="step-dot"><div class="dot" id="dot-1"></div>Step 1: Video</div>
+          <div class="step-dot"><div class="dot" id="dot-2"></div>Step 2: Review Q's</div>
+          <div class="step-dot"><div class="dot" id="dot-3"></div>Step 3: Assessment</div>
+          <div class="step-dot"><div class="dot" id="dot-4"></div>Step 4: Evaluation</div>
+          <div class="step-dot"><div class="dot" id="dot-5"></div>Step 5: Certificate</div>
         </div>
       </div>
     </div>
 
     <!-- VIDEO SECTION -->
-    <div class="card course-section active" id="section-video">
+    <!-- COURSE ADMINISTRATION (always visible, not a nav step) -->
+    <div class="card" id="section-admin">
       <div class="card-header">
-        <div class="card-title">Step 1</div>
-        <div class="card-heading">Watch the Panel Discussion</div>
+        <div class="card-title">Course Administration</div>
+        <div class="card-heading">Before You Begin</div>
       </div>
 
       <!-- COURSE INFO BANNER -->
       <div class="card-body" style="padding-bottom:0;">
-        <div style="background:var(--gold-light);border:1px solid #FDE68A;border-radius:10px;padding:14px 18px;font-size:13px;color:#78350F;margin-bottom:16px;">
+        <div style="background:var(--gold-light);border:1px solid #FDE68A;border-radius:10px;padding:14px 18px;font-size:13px;color:#78350F;margin-bottom:0;">
           <strong>Important:</strong> You must complete the qualified assessment within <strong>one year</strong> of enrollment. A passing score of 70% or higher is required to earn CPE credit.
-        </div>
-      </div>
-
-      <!-- COURSE NAVIGATION INSTRUCTIONS -->
-      <div class="card-body" style="padding-top:12px;padding-bottom:0;">
-        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gray-500);margin-bottom:10px;">How to Complete This Course</div>
-        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:16px 20px;font-size:13px;color:var(--gray-700);line-height:1.8;">
-          <p style="margin-bottom:8px;">This course is completed in five sequential steps. Each step unlocks automatically after the previous one is finished:</p>
-          <p style="margin-bottom:4px;"><strong>Step 1 — Watch the Recording:</strong> Watch the full panel discussion video below. Use the Course Index above to navigate to specific topics by timestamp. When finished, click "Mark Video Complete &amp; Continue."</p>
-          <p style="margin-bottom:4px;"><strong>Step 2 — Review Questions:</strong> Answer 3 formative check-in questions. These are ungraded and provide immediate feedback to reinforce your learning. You must answer all 3 to proceed.</p>
-          <p style="margin-bottom:4px;"><strong>Step 3 — Qualified Assessment:</strong> Complete a 5-question multiple-choice assessment. A score of 70% or higher (4 out of 5) is required to earn CPE credit. You may retake the assessment if needed. You must complete it within one year of enrollment.</p>
-          <p style="margin-bottom:4px;"><strong>Step 4 — Course Evaluation:</strong> Complete a short evaluation form rating your experience. This step is required before your certificate is issued.</p>
-          <p style="margin-bottom:0;"><strong>Step 5 — Certificate:</strong> Upon passing the assessment and completing the evaluation, your certificate of completion will be generated. You can print or save it as a PDF. Use the <strong>Glossary of Key Terms</strong> and <strong>Course Index</strong> above at any time for reference.</p>
         </div>
       </div>
 
       <!-- PUBLICATION / REVIEW DATE -->
       <div class="card-body" style="padding-top:12px;padding-bottom:0;">
-        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: April 3, 2026 |&nbsp; Last Revision Date: April 30, 2026</div>
+        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 29, 2026 &nbsp; Last Revision Date: April 30, 2026</div>
       </div>
 
       <!-- LEARNING OBJECTIVES -->
@@ -1003,6 +1189,19 @@
           <li style="margin-bottom:8px;"><strong>Identify</strong> the risk-based approach required under QC 1000, including how firms must assess quality risks and design corresponding policies and procedures as responses.</li>
           <li style="margin-bottom:8px;"><strong>Evaluate</strong> the post-implementation obligations under QC 1000, including ongoing monitoring, remediation of deficiencies, and the annual evaluation requirement.</li>
         </ol>
+      </div>
+
+      <!-- COURSE NAVIGATION INSTRUCTIONS -->
+      <div class="card-body" style="padding-top:12px;padding-bottom:0;">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gray-500);margin-bottom:10px;">How to Complete This Course</div>
+        <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:16px 20px;font-size:13px;color:var(--gray-700);line-height:1.8;">
+          <p style="margin-bottom:8px;">This course is completed in five sequential steps. Each step unlocks automatically after the previous one is finished:</p>
+          <p style="margin-bottom:4px;"><strong>Step 1 — Watch the Recording:</strong> Watch the full panel discussion video on the next screen. When finished, click "Mark Video Complete &amp; Continue."</p>
+          <p style="margin-bottom:4px;"><strong>Step 2 — Review Questions:</strong> Answer 3 formative check-in questions. These are ungraded and provide immediate feedback to reinforce your learning. You must answer all 3 to proceed.</p>
+          <p style="margin-bottom:4px;"><strong>Step 3 — Qualified Assessment:</strong> Complete a 5-question multiple-choice assessment. A score of 70% or higher (4 out of 5) is required to earn CPE credit. You may retake the assessment if needed.</p>
+          <p style="margin-bottom:4px;"><strong>Step 4 — Course Evaluation:</strong> Complete a short evaluation form rating your experience. This step is required before your certificate is issued.</p>
+          <p style="margin-bottom:0;"><strong>Step 5 — Certificate:</strong> Your certificate of completion will be generated upon passing the assessment and completing the evaluation. You can print or save it as a PDF.</p>
+        </div>
       </div>
 
       <!-- COURSE NAVIGATION INDEX -->
@@ -1019,29 +1218,107 @@
       </div>
 
       <!-- GLOSSARY REFERENCE -->
-      <div class="card-body" style="padding-top:12px;">
+      <div class="card-body" style="padding-top:12px;padding-bottom:0;">
         <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gray-500);margin-bottom:8px;">Glossary of Key Terms</div>
         <div style="background:var(--blue-light);border:1px solid #BFDBFE;border-radius:8px;padding:12px 16px;font-size:13px;color:#1E3A8A;display:flex;align-items:center;gap:10px;">
           <span style="font-size:16px;">📖</span>
-          <span>A full glossary of key terms is available in the <strong>sidebar on the right</strong>. Click <strong>Glossary of Key Terms</strong> to expand it at any time during the course.</span>
+          <span>A full glossary of key terms is available in the <strong>sidebar on the right</strong>. Click <strong>Glossary of Key Terms</strong> to expand it at any time during the course. The <strong>Table of Contents</strong>, <strong>Alphabetical Index</strong>, and <strong>Searchable Transcript</strong> are also available below as course reference tools.</span>
         </div>
       </div>
 
       <!-- CPE METHODOLOGY -->
-      <div class="card-body" style="padding-top:12px;">
+      <div class="card-body" style="padding-top:12px;padding-bottom:0;">
         <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gray-500);margin-bottom:6px;">CPE Credit Methodology</div>
         <p style="font-size:13px;color:var(--gray-600);line-height:1.6;">CPE credit is determined using the <strong>Word Count Formula (Method 2)</strong> per NASBA Standard No. 17, S17-07. Because this program is entirely video-based, the formula is: [video duration (57.18 min) + (8 questions &times; 1.85 min)] &divide; 50 = 1.44, rounded down to <strong>1.0 CPE credit</strong> based on a 50-minute hour. Credit is awarded upon successful completion of the qualified assessment with a score of 70% or higher.</p>
       </div>
 
+      <!-- START COURSE BUTTON -->
+      <div class="card-body" style="padding-top:16px;">
+        <div onclick="startCourse()" style="display:block;width:100%;padding:16px;background:var(--navy);color:white;font-family:var(--sans);font-size:15px;font-weight:600;border-radius:10px;cursor:pointer;text-align:center;user-select:none;">
+          Begin Course — Step 1: Watch Recording →
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: WATCH RECORDING -->
+    <div class="card course-section" id="section-video">
+      <div class="card-header">
+        <div class="card-title">Step 1</div>
+        <div class="card-heading">Watch the Panel Discussion</div>
+      </div>
       <div class="video-wrapper">
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/3axE8KPHU-w?si=2o9ao1ruES7dl-7q" title="Master QC 1000 Implementation for Your Audit Firm" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border:none;"></iframe>
       </div>
       <p class="video-note">⏱ Approx. 60 minutes · Auditing · QC 1000 Implementation</p>
       <div class="card-body">
-        <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">Watch the complete panel discussion before proceeding to the review questions.</p>
+        <p style="font-size:14px;color:var(--gray-600);margin-bottom:16px;">Watch the complete panel discussion, then click below to proceed to the review questions. Use the <strong>Alphabetical Index</strong> and <strong>Searchable Transcript</strong> below to look up specific topics or timestamps at any time.</p>
         <div id="video-complete-btn" onclick="completeVideo()" style="display:block;width:100%;padding:16px;background:var(--navy);color:white;font-family:var(--sans);font-size:15px;font-weight:600;border-radius:10px;cursor:pointer;text-align:center;user-select:none;position:relative;z-index:20;">
           Mark Video Complete &amp; Continue →
         </div>
+      </div>
+    </div>
+
+
+    <!-- TABLE OF CONTENTS (main col) -->
+    <div class="card" id="section-toc-main">
+      <div class="card-header">
+        <div class="card-title">Course Reference</div>
+        <div class="card-heading">Table of Contents</div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">This course is organized into the following topics. Use the <strong>Alphabetical Index</strong> or <strong>Searchable Transcript</strong> below to locate specific information within the recording.</p>
+        <div class="toc-grid">
+          <div class="toc-item"><div class="toc-num">1</div><div class="toc-info"><div class="toc-title">Introduction &amp; Housekeeping</div><div class="toc-time">0:00 – 1:15</div></div></div>
+          <div class="toc-item"><div class="toc-num">2</div><div class="toc-info"><div class="toc-title">Meet the Panelists</div><div class="toc-time">1:15 – 8:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">3</div><div class="toc-info"><div class="toc-title">PCAOB Background &amp; Current Events</div><div class="toc-time">8:00 – 15:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">4</div><div class="toc-info"><div class="toc-title">QC 1000 vs. SQMS No. 1 — Key Differences</div><div class="toc-time">15:00 – 22:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">5</div><div class="toc-info"><div class="toc-title">Risk-Based Approach &amp; Quality Objectives</div><div class="toc-time">22:00 – 30:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">6</div><div class="toc-info"><div class="toc-title">Reasonable Assurance &amp; Firm Obligations</div><div class="toc-time">30:00 – 38:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">7</div><div class="toc-info"><div class="toc-title">Form QC &amp; Annual Filing Requirement</div><div class="toc-time">38:00 – 44:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">8</div><div class="toc-info"><div class="toc-title">Monitoring, Remediation &amp; Annual Evaluation</div><div class="toc-time">44:00 – 52:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">9</div><div class="toc-info"><div class="toc-title">Documentation &amp; Retention (7-Year Requirement)</div><div class="toc-time">52:00 – 56:00</div></div></div>
+          <div class="toc-item"><div class="toc-num">10</div><div class="toc-info"><div class="toc-title">Q&amp;A, Closing Remarks &amp; Resources</div><div class="toc-time">56:00 – End</div></div></div>
+        </div>
+        <div style="margin-top:14px;padding:12px 16px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:8px;font-size:12px;color:#1E3A8A;">
+          💡 <strong>How to find specific information:</strong> Use the <strong>Alphabetical Index</strong> below to look up key terms and their timestamps, or use the <strong>Searchable Transcript</strong> (Ctrl+F style search) to find any word or phrase in the recording.
+        </div>
+      </div>
+    </div>
+
+    <!-- ALPHABETICAL INDEX (main col) -->
+    <div class="card" id="section-index-main">
+      <div class="card-header">
+        <div class="card-title">Course Reference</div>
+        <div class="card-heading">Alphabetical Index</div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px;">An alphabetical listing of key topics covered in this course, with timestamps indicating where each topic can be found in the recording. Click any letter to jump to that section, or type a term in the search box.</p>
+        <div class="index-search-bar">
+          <span style="font-size:15px;color:var(--gray-400);">🔍</span>
+          <input type="text" class="index-search-input" id="index-search" placeholder="Search index terms (e.g. Form QC, monitoring)…" oninput="filterIndex(this.value)">
+          <button onclick="document.getElementById('index-search').value='';filterIndex('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
+        </div>
+        <div class="index-letter-nav" id="index-letter-nav"></div>
+        <div id="index-body"></div>
+      </div>
+    </div>
+
+    <!-- SEARCHABLE TRANSCRIPT (main col) -->
+    <div class="card" id="section-transcript-main">
+      <div class="card-header">
+        <div class="card-title">Course Reference</div>
+        <div class="card-heading">Searchable Transcript</div>
+      </div>
+      <div class="card-body">
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:10px;">This is the complete transcript of the panel discussion. Use the search box below to find any word or phrase — matching segments will be highlighted. Timestamps correspond to the video recording above.</p>
+        <div class="transcript-search-bar">
+          <span style="font-size:15px;color:var(--gray-400);">🔍</span>
+          <input type="text" class="transcript-search-input" id="transcript-search" placeholder="Type any term to search the transcript (e.g. "Form QC", "monitoring")…" oninput="searchTranscript(this.value)">
+          <button onclick="document.getElementById('transcript-search').value='';searchTranscript('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
+        </div>
+        <div class="transcript-hint">Tip: You can also use Ctrl+F in your browser to search this entire page.</div>
+        <div class="transcript-results-count" id="transcript-count"></div>
+        <div class="transcript-scroll" id="transcript-scroll"></div>
       </div>
     </div>
 
@@ -1156,7 +1433,10 @@
       <div class="sidebar-section">
         <div class="sidebar-label">Navigation</div>
         <div class="step-nav">
-          <button class="step-btn active" id="nav-video" onclick="goToSection('video')">
+          <button class="step-btn active" id="nav-admin" onclick="goToAdmin()">
+            <div class="step-icon" style="font-size:9px;">★</div>Course Admin
+          </button>
+          <button class="step-btn" id="nav-video" onclick="goToSection('video')">
             <div class="step-icon">1</div>Watch Recording
           </button>
           <button class="step-btn locked" id="nav-review" onclick="goToSection('review')">
@@ -1228,6 +1508,31 @@
       </div>
     </div>
 
+
+    <!-- TABLE OF CONTENTS SIDEBAR CARD -->
+    <div class="sidebar-card">
+      <div class="sidebar-section" style="padding-bottom:0;">
+        <button onclick="toggleTOC()" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;padding:0;margin-bottom:14px;">
+          <div class="sidebar-label" style="margin-bottom:0;">Table of Contents</div>
+          <span id="toc-chevron" style="font-size:14px;color:var(--gray-400);transition:transform 0.2s ease;">▼</span>
+        </button>
+        <div id="toc-panel" style="display:none;padding-bottom:16px;">
+          <div style="font-size:12px;color:var(--gray-500);margin-bottom:8px;">Click any section to jump to that topic in the transcript below.</div>
+          <div style="font-size:12px;color:var(--gray-700);line-height:1.8;">
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">1. Introduction &amp; Housekeeping</strong><span style="color:var(--gray-400);">0:00–1:15</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">2. Meet the Panelists</strong><span style="color:var(--gray-400);">1:15–8:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">3. PCAOB Background &amp; Current Events</strong><span style="color:var(--gray-400);">8:00–15:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">4. QC 1000 vs. SQMS No. 1</strong><span style="color:var(--gray-400);">15:00–22:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">5. Risk-Based Approach</strong><span style="color:var(--gray-400);">22:00–30:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">6. Form QC &amp; Annual Filing</strong><span style="color:var(--gray-400);">38:00–44:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">7. Monitoring &amp; Remediation</strong><span style="color:var(--gray-400);">44:00–52:00</span></div>
+            <div style="margin-bottom:5px;display:flex;justify-content:space-between;"><strong style="color:var(--navy);">8. Documentation &amp; Retention</strong><span style="color:var(--gray-400);">52:00–56:00</span></div>
+            <div style="display:flex;justify-content:space-between;"><strong style="color:var(--navy);">9. Q&amp;A &amp; Closing</strong><span style="color:var(--gray-400);">56:00–end</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="sidebar-card">
       <div class="sidebar-section" style="padding-bottom:0;">
         <button onclick="toggleGlossary()" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;cursor:pointer;padding:0;margin-bottom:14px;">
@@ -1286,6 +1591,69 @@
 </div><!-- /layout -->
 
 <script>
+const transcriptBlocks = [
+{time:"0:00",minute:0,text:`Welcome. We'll get started shortly. Before we begin, here's how to earn continuing professional education credit for attending this session. There are no polling questions or attendance checks. Instead, you will demonstrate your knowledge by taking a brief multiple choice quiz using the earmark app. Visit earmark.app in your web browser. You can also download the mobile app by scanning the QR code on the screen. Log in or if you're new, create your free account. Be sure to use a valid email address because that's where we'll send your course completion certificates. From the home screen, scrol`},
+{time:"1:00",minute:1,text:`a few days. We'll email you a link to the course when it is ready. If you have questions or need help, email us at support earmarkcpe.com. And now on to the event. >> All right, quick question. Has QC1000 officially hit the phase where everyone says, \"Yeah, we're working on it.\" But what they really mean is we made a folder called QC 1000 and we haven't opened it yet. Because this year the firms that win aren't the ones with the fanciest templates. They're the ones that can translate quality control into real behavior. How you supervise, how you review, how you document, how you use tech, an`},
+{time:"2:00",minute:2,text:`people with me who are experts from inside the game. My co-anchor Chris Vanover and our featured guest and resident expert Brian Uko. So, let's get qualified. Uh, okay. Yes, we have very qualified individuals giving very qualified opinions, but they are still opinions. So please keep in mind that the capacity by which this information is being conveyed here is not financial advice. Binding financial advice is reserved for contractual engagement. So just a little disclosure since we accountants love disclaimers. All right everybody, now that that's out of the way, there's so much to talk about `},
+{time:"3:00",minute:3,text:`promotional material, yes, today we're talking about the PCAOB and QC 1000 because, well, it's very relevant and timely, but we're not going to talk about it like we're reading a parking ticket cuz that's not my style. And oh, who am I? I'm Drew Carrick, known in the industry as Petty Cash, the rapping CPA, number one on the balance sheet. I'm your host, Hype Man, and the guy who's here to make sure that we can discuss inspection findings without everyone falling asleep or checking their emails for the next 45 minutes. So, close those files. I'm not alone, though. I'm joined by my co-anchor, C`},
+{time:"4:00",minute:4,text:`>> You're absolutely spot on, Drew. >> Okay, great. Glad I asked. And now for our featured guest for today, which is Brian Uko. And if you've ever listened to me host a podcast before, you know I like to let the guests introduce themselves. So, I'm good off a teleprompter, but sometimes it's best to hear directly from the source. So, Brian, all I've got on you is former PWC chief auditor and current CPA club vice president. You want to share what that means, how you got there, and how you take on a career like that? >> Sure. Thanks, Drew. Or Petticash, I don't know which one to call you, but u`},
+{time:"5:00",minute:5,text:`wanted to share that because I know most of the country is going through uh some ice storms. So um but you know just a little bit more about my background. I spent about a total of 12 years at PWC where I serve both private and public clients. But uh throughout my 12 years there my main focus was on large uh PCOB integrated audits. So from uh day one I was placed on a a PCOB uh integrated audit testing internal controls uh walkthroughs and whatnot. And you know as I went further into my career and as a director I did actually spend a few years in the national office as a chief auditor in the f`},
+{time:"6:00",minute:6,text:`initiatives um as well as uh delivered a number of trainings at uh all levels across the country. So that was that was the start of my career. I did take a little bit of a break from the public accounting role and spent a few years in a in a technical accounting and reporting role at a Fortune 300 company uh where I led uh various accounting standard imple implementations as well as some transformation efforts. But then you know about three and a half years ago I reconnected with Chris. Uh we were colleagues at PWC. Uh and I saw he was uh making a splash in the industry and I know he really li`},
+{time:"7:00",minute:7,text:`opportunity like that in my career. So I jumped aboard and quickly uh you know I lead the the CPA firm solutions for CPA club and quickly jumped back into helping firms navigate through the the PCB regulatory environment. So uh whether that be with EQR coaching uh remediation or inspection support things like that. So um yeah PCO has been uh a big part of my experience through my my whole career so far. And so I guess that uh uh you could you know call me an expert in the field I guess. So um >> real quick what Brian didn't mention is the fact that he not only joined me at CPA club but he actu`},
+{time:"8:00",minute:8,text:`>> Honestly, I I I do respond to petty uh quite often, but uh for we we can we can call me Drew until I'm in character. >> Fair enough, Drew. >> All right. Uh so I I heard a lot of the term PCAOB mentioned during your opening introduction there, Brian, but what's going on with the PCAOB? Because, you know, recent news for some people, this might be breaking, right? the the budgets were just approved and we already knew that there was budget pressures and board turnover. I mean, the PCAB almost got eliminated last year. So, I mean, what's going on? Like, how what does this mean for how the boar`},
+{time:"9:00",minute:9,text:`eliminated and folded into the, uh, into the SEC. And, um, you know, that was kind of the, uh, the feeling or the sentiment within the uh, within the profession as soon as uh, the Trump administration uh came in. um he is you know um pro big business and you know pro you know deregulation. So um you know in the one big beautiful bill there was a uh part of it that um included the proposal for the PCOB to be folded into the SEC. Um, unfortunately, and you know, I'm not a uh I'm not a a lawyer and uh you know, I did take AP government in high school, but that's the uh the extent of my expertise.`},
+{time:"10:00",minute:10,text:`wasn't a budget uh item, it was more of a policy overhaul, um they had to exclude it from the the one big beautiful bill. So ultimately, it got excluded from the approval of the one big beautiful bill. And so we still have the the PCOB um as we know it still here today um and still, you know, having uh you know, oversight and and and setting the the regulations for the industry. All right. And I mean Chris, you were a former PCAOB director. So I mean like how do you feel about this? This feels like your alma mater getting getting uh under the >> Yeah, it was interesting because I was actually `},
+{time:"11:00",minute:11,text:`the same exact time they looked to actually again what was going to happen with the PCO in light of the sequestration where's PCO going to again cut jobs that sort of stuff so almost like you fast forward 15 years and you're in the exact same pendulum here again right and that's kind of just how it always es and flows you know you go from one side of the pendulum to the And what's a little bit strange in our view as public accountants is you have to wonder, you know, why do politics and why do budgets ultimately get in the way of actually the commitment to quality that every firm has, right? A`},
+{time:"12:00",minute:12,text:`>> So I mean I guess either of you then what what what could this potentially look like as far as like a QC 1000 impact? And I want to pull up a quote here um from Marosel, the AICPA CEO. He was quoted in January of this year, so very recently, saying QC-1000 was overwhelmingly opposed by the profession and said, \"If I were to bet on it, I would think at some point QC 1000 may eventually just go away.\" Um, is it is it going away? Is it not going away? Is it is it changing? I mean, what's even the point of talking about this? I mean, we got a bunch of people here who are are tuning in to to l`},
+{time:"13:00",minute:13,text:`September of 2024, but then made it effective for uh all registr uh registered firms uh December 15th, 2025. So it didn't give firms very much time to respond and you know firms also had the AICPA quality management standards to implement on the same timeline. So there was a lot of push back from that perspective. But, you know, I did read some of Mark Kosil's comments about it too and um you know, it it the AICPA's version was very similar and consistent with the international standards which have been around for a few years, but then you know the PCAOB of course had um you know some much hea`},
+{time:"14:00",minute:14,text:`and then ultimately the deferral. But you know in terms of is it is it going to go away? Um I don't think so. Um I did see that um the SEC's chief accountant um he did say I think it was in the end of December at one of the uh the SEC meetings um one of his top five priorities uh heading into 2026 I think uh was the PCO regulatory and standard setting activities. So, you know, him to come out and say that publicly um means that, you know, PCOB is here to stay uh at least for the next couple years. And as you can see with just how, you know, things work in government, um things can move very sl`},
+{time:"15:00",minute:15,text:`There's some firms that ultimately didn't realize there was going to be a deferral of QC-1000 and they actually have gone through the implementation of both QC 10000 as well as SQMS that was due December 15th, 2025. And a lot of them go, okay, well, did I just do all that work for nothing? Right? And what I what I hear is, you know, they're likely right now there's applications out there for five new board seats. that new board may come aboard whether it's February or March whenever it might be whether it's an entirely new board or whether it's a few new members there will be a shakeup at the `},
+{time:"16:00",minute:16,text:`Trump administration at the end of the day, right? SEC chair, all that sort of stuff. It's going to be a deregulatory environment. But what I'm sensing is that while it might be deregulatory, what you're just going to likely see is a shift from, hey, let's stop focusing for the past 20 years on this I gotcha inspection mentality and let's focus on actually trying to prevent this stuff from ever happening in the first place. And that's exactly what these new standards are designed to do. So I would just say firms out there that are like, okay, well, do I do this? Do I not do this? I'd say at th`},
+{time:"17:00",minute:17,text:`obviously we'll we'll get into what the standards themselves are but like from an entity level standpoint like what's that what's that sort of bifurcation here >> yeah I guess again going back to my opinion um you know I don't know how much the two entities actually speak right because you know AICPA was out with SQMS quality management standards back in 2022. Um, and PCOB, you know, obviously wanted to follow suit with its own QC standard, but knowing the pressure it puts on CPA firms, um, you know, especially some of the smaller, you know, midsize, regional, and and local firms. Um, you know`},
+{time:"18:00",minute:18,text:`timeline um kind of do it in unison right and you know AICPA has kind of done that with the uh the international side so uh just looking for more of the the governing bodies to just you know you know almost have some empathy for the the profession and the practitioners, right? And tried to make it easy. >> Yeah, you're totally spot on, Brian. And again, I think part of this comes out of um the SECC chief accountant's comments is, you know, let's not forget the fact that on top of AICPSQM and PCOB QC 1000, you also had the international standard equivalent that came out even before these, right`},
+{time:"19:00",minute:19,text:`because what we need is consistency we need to kind of stop trying to guess and understand who our regulator is and just understand that there's common objective here. Let's get behind it and actually roll something out that actually can be ultimately implemented by all firms and not necessarily be a burden to one firm versus another. >> Yeah. Now, you can correct me if I'm wrong, but I feel like, you know, American Sign Language, well, it's a called American Sign Language, so maybe that already answers the question, but I imagine sign language to be the same across the the world, right? Peopl`},
+{time:"20:00",minute:20,text:`those things and we have that too but we also have this layer. Oh yeah you had those layers but we also have this layer. There's not like anything in conflict like I you know I'm thinking of like back to the Eiff's you know gap you know lease accounting type things where there could actually be situations where things were in conflict with with how they're accounted for. Uh in this sort of thing when it comes to quality management and quality controls uh there's nothing that's like well one says to do it this way the other one says to do it the other. You're like, \"Well, I got to pick.\" >> Y`},
+{time:"21:00",minute:21,text:`yeah just going back to that like it's all the same objective where you know firms accounting firms with uh ANA practices accounting and assurance practices um basically have to design and implement a system um that allows for uh their firm and their firm's uh employees and personnel to u meet regulations standards legal requirements ments and deliver quality engagements at the end of the day. So you would think that with that objective being the same for all of them um they would you know very much closely align which you know I would say international standards and the AICPA standards have a`},
+{time:"22:00",minute:22,text:`actually having to um design and perform a risk assessment just like uh auditors do on each of their audit clients. They have to assess the risks for each of their clients. So firms have to do the same exact thing where they say, \"Okay, we work in this type of industry. you know, if we work in crypto, that's way more risky than working in manufacturing, right? Just because it's a new and emerging area. Um, we only provide audits uh and reviews and maybe some compilations. So, really taking a look at the facts and circumstances of your firm and doing that deep dive risk assessment. And then si`},
+{time:"23:00",minute:23,text:`>> I'm gonna maybe just jump in real quick, Brian, because I think you really hit on an interesting point talking about risk assessment. And when I hear risk, I think, you know, is it standardized? In this case, it really is the firm having to admit where they're weak and that's a little uncomfortable at times, right? So, >> I think it actually creates an element of more judgment at the end of the day because risk is not not necessarily common across the board, right? Every firm has its own unique risks and so that judgment actually is where you create scrutiny from the regulators. So you bett`},
+{time:"24:00",minute:24,text:`like oh well you know that's that's the kind of key thing that makes humans humans is we have that ability to do that judgment and so is that do would you say that that's probably the main argument for why it's like you can't just ask AI to go do it? Yeah, I don't know. AI are language learning models, right? And so you have to train them to think appropriately. And I don't know, I mean that that's the struggle with firms trying to implement today is that there's not a lot of expertise out there to be doing it in the first place. So, um, unless you have someone like, uh, Chris out there, um, t`},
+{time:"25:00",minute:25,text:`or QC-1000 and ultimately becomes a little bit of like a a moonlighting gig for them because they don't have the time at the end of the day and it actually creates more risk and more quality issues because you actually haven't devoted the right time or resources to get it done. Yeah, I think at some point you had uh you had you had mentioned during the pre-show, Brian, some calculation of like the approximate cost, you know, based on the the size of the firms of of how many hours or what what the kind of cost would be maybe for some for a firm to try to like kind of take this on and it sort of`},
+{time:"26:00",minute:26,text:`firms are already set with kind of their design and implementation. Um but you know as as Chris is alluding to there's an opportunity cost to take some of your um experts and your partner and director level uh and even manager level personnel take them out of a client-f facing role uh you know billable hours and we don't like to use that here but um take them out of a bill hour role and put them into a non-revenue generating activity that's going to take you know we put estimates up to 500 plus hours. So, you know, for those in the audience, take your your average billing rate for a partner, d`},
+{time:"27:00",minute:27,text:`a pass through? I mean end of the day it should be a pass through to um firm's clients because it it is an investment in the firm's infrastructure and if you go back to exactly the objective of having an infrastructure um and and and implementing these new quality standards um is that you're delivering quality deliverables right and that should be a true differentiator for firms out there to say hey you know firm XYZ down the street you know you you know, has PCOB inspection findings, has findings, part two findings on their uh system of quality control. Um, but look, we made the investment an`},
+{time:"28:00",minute:28,text:`a premium that should be uh passed to the clients. You know, there's a kind of >> it's a cost of doing business, right? It's like you wouldn't go out there and buy a bunch of chairs and desks and computers and laptops and then not necessarily change your prices because of that, right? So, this is no different at the end of it. It's infrastructure. >> Yeah. You know, it's it's kind of interesting. It reminds me of the fintexs and they sort of commandeered like sock 2 where it just becomes this this standard of like it's a bragging right like it's a big LinkedIn post when you're like we just we `},
+{time:"29:00",minute:29,text:`really even appreciate what I'm doing and there's always seems to be that that that sort of rub and how do how do you kind of shift the narrative to be like quality is important how do you make these you know because because part of part of what the firm has to do is they have to also >> showcase and convince you know the their client ience about why, you know, they're investing in the quality is valuable to them. >> Yeah. And I will say, you know, this goes back to the fact that the CPA is needed to ultimately issue an audit report, but we actually have a monopoly and we've somehow commoditiz`},
+{time:"30:00",minute:30,text:`comply with to report on certain firm and engagement metrics. And eventually the SEC kabasha they pulled it back and said look we're not going forward with that. So again the market doesn't really have any visibility in terms of how you differentiate out there but QC 1000 is a way where firms potentially could differentiate and actually help improve and be more transformative for their actual practice if they do it the right way. >> So >> maybe I'll go back to and I know I'm I'm rewinding a bit to kind of our talk around you know where the the PCOB is going but um the I think it's uh Kurt, I t`},
+{time:"31:00",minute:31,text:`engagements uh you know part one findings um you know uh we'll give the firm part two finding ings which are criticisms uh quality control criticisms or QCC's right so they're going from the bottom and going up to the top level saying hey because you had so many uh in uh findings within your engagements that means there's probably a problem pervasive within your system of quality control well what um Kirk did mention uh was taking a fresh look at that inspection process um and particularly in light of QC 1000 And so now he's thinking that, you know, um the inspection process is probably going `},
+{time:"32:00",minute:32,text:`quality control and then maybe you corroborate that by looking at a few uh engagements, right? So you're starting at the at the firm system and then going down because you know if everything's working as a whole um then you should be uh confident that there's not going to be any findings within your particular engagement. So that's what he said. Um, which makes sense and it makes sense based on how we what we know of QC 10000 and the and the, you know, the efforts it will take to build the infrastructure and implement. But >> it's like the NTSB out there inspecting an airline disaster as oppos`},
+{time:"33:00",minute:33,text:`putting this piece of metal on. Let's see like if it can hold.\" It's like, \"No, you kind of you architect the building from scratch using math, using physics, having everything kind of pre-calculated.\" A lot of firms, I think, you know, ultimately, um, they've built something and they've kind of patched it together or, put band-aids on it over the years and just said, \"Well, it's getting by. Peer review's not necessarily drawn eyes on this. The PCO gave us a couple inspection comments, but we're still getting by, right? It's that getting by mentality because we're so busy all the time. But`},
+{time:"34:00",minute:34,text:`became like this really weird like layout where the experience of actually being at the wedding was not that great even though it was this like super expensive venue. Uh that's kind of what I feel like happens when you just start building. You get inconsistency when it comes to quality and uh and the experience of being, you know, whether it's at a at a firm or an industry. >> Yeah. >> So what in a nutshell, Brian, and and perhaps you've you know, we we've been kind of talking around it, but like is there like a oneliner or twoliner if you were to say like what is QC 1000? Like kind of boil it`},
+{time:"35:00",minute:35,text:`>> Oh, yeah. Um, you know, I I I kind of already uh alluded to it earlier, but you know, if I just think about the objective of all these quality control, quality management um standards is that uh you're designing and implementing an infrastructure uh for your firm's ANA practice to be able to um uh do and perform quality engagements and ensure your firm and your personnel are uh abiding by all the rules, standards and regulations, legal whatever it may be. Um and so at the end of the day, it's that infrastructure of your ANA firm's uh practice. So, and I used uh I've done many webinars and n`},
+{time:"36:00",minute:36,text:`Oxley or SOCKS for um registered accounting firms. They have to take a look and do a risk assessment of their uh of their firm and then design internal controls which are policies and procedures to address those risks. And so not only that but they have to operate and then monitor and remediate as needed. And so I think that's you know the at the end of the day um it would be expected or inspectors should expect that if a firm's uh system is operating correctly and the monitoring and remediation is operating correctly they'll see a number of findings and observations um that have been identifi`},
+{time:"37:00",minute:37,text:`like a self-p policing mechanism so that it doesn't reach the inspector at the end of the day. >> Isn't it I mean kind of wild, Brian, you think about it. It's like CPA firms are out there trying to get their clients to have good control environments and good controls, but yet we don't even practice what we preach here in our profession. So if anybody were to audit the CPA firm out there, I can only imagine what kind of opinions they would get on these financials and or internal controls. >> Well, I think we always talked about that at like uh our former employers. You already know where I wor`},
+{time:"38:00",minute:38,text:`to be associated with because in effect they have like a material weakness, right? >> Yeah. And and I think that's one of the the big changes that uh you know or the big differences between AICPA International and QC 1000 is that uh every year uh the PCOB introduced a form QC. Um so just like where there's form AP, form 2, form one. um you're going to file, firms are going to have to file this form every year and um really attest to the fact that they've designed implemented controls. But not only that, you know, as I just mentioned, they're going to have to uh display or demonstrate that they`},
+{time:"39:00",minute:39,text:`clean form QC, I'd just be like, >> I don't know about that one. >> Yeah. I mean, >> professional skepticism going off. >> Regardless of what happens with the PCOB, and again, I think there is going to be some sort of version of QC that ultimately is either adopted by the PCOB in its form QC like it already is, or is it a derivation of SQMS? You would just hope that firms would understand that point, right? Is that this will somehow I hope that part sticks where it is a more public information out there to help buyers make more informed decisions at the end of the day. Yeah, I think initially `},
+{time:"40:00",minute:40,text:`and they cut the overall PCLB budgets by 10%. Um you know, inspections are going to have to be more streamlined. And I I see this, you know, QC 1000 as a way for uh inspections to be more streamlined. Um, right? Because if you really inspect a firm's uh system of internal controls or system of quality control, whatever you want to call it, um, you're going to get to the root causes a lot faster than inspecting, you know, 25 different engagements and then having to draw parallels to what's wrong with the firm internally. >> So, how do the quality standards increase like the accountability for t`},
+{time:"41:00",minute:41,text:`avoidant of wanting to have the findings and now obviously you know >> what a great incentive system it was right >> yeah you know because it was like you didn't want to go have to like spend the extra time there because you knew you weren't going be able to bill for it anyway or they were going to, you know, reduce it and and whatnot. Uh, you know, so that your your realization was going to be lower from it anyway. So, it didn't really incentivize like, you know, finding and catching those things. And obviously, like you said, they they're not going to be able to, you know, you can't audit ev`},
+{time:"42:00",minute:42,text:`CEO equivalent um you are held as uh termed is ultimately responsible for the systems uh quality control or quality management. And so as it relates to QC 1000 specifically, that person or that individual or may even be a board, I think uh as defined in the standards too, you can be a managing board. Um but they're going to have to sign off on that form QC every year and say, \"Hey, you know, we've set the right tone at the top. um we've put the right amount of resources into place. Uh you agree with any types of evaluation, deficiencies, and remediation plan. And so there really is you're you`},
+{time:"43:00",minute:43,text:`maybe your QC director, QC partner or your lead ANA promoting, you know, audit quality. That's fine, but you expect that from your assurance leader. I I hope you do. Um, but when your managing partner is say a tax partner and is promoting audit quality, I mean, just put yourself in a staff's level shoes. It's like, oh well, if the CEO is saying this and he's he or she is not even a an audit partner, this, you know, I got to take this more seriously. So there there's a really more, you know, um, uh, clear line of roles and responsibilities and, uh, and form QC, uh, requires that person to put t`},
+{time:"44:00",minute:44,text:`hypothetically play this out that >> Yeah. Somebody going to jail, you know? Are we gonna make are we gonna see like the next like smartest men in the room? Uh you know, is there a movie? >> You guys are asking me crystal ball questions now, which I don't know if uh if I could read that, I'd have thoughts. >> Yeah. >> I mean, that would be a kind of cool movie concept, right? if it like I mean look nobody wants to be and the the I mean one of the worst things that ever happened of course is Arthur Anderson and Enron but one of the best things to to have a reference point to talk about is the f`},
+{time:"45:00",minute:45,text:`can use that bar at some point. Um it's better than what is QC 1000, right? Um, yeah, but you know, when I think about that analogy, right, again, you had Skiillings and all these folks that were involved in Enron, eventually went to jail, got fined and stuff like that. And I think we've even seen some of that with some of the fallout from like BF Borgers a couple years ago, and the guy was running a sham audit mill according to the SEC. So, there are actual sanctions. There's actually penalties that happen because of this. But if I'm the managing partner putting my signature on that line, I g`},
+{time:"46:00",minute:46,text:`responsibility um that there's clear lines of communication and those are um built-in objectives into the standards already right and so being a managing partner or CEO you would think that that individual can, you know, have the power and the authority to direct resources. Um, you know, uh, invest in additional resources and direct, you know, uh, manpower and time and initiatives uh, appropriately to help support the infrastructure or the QC 1000 implementation and uh, operation and monitoring. So I think that's the hope behind it because you have the ultimate decision maker >> um being ultim`},
+{time:"47:00",minute:47,text:`know, when a PCB inspection happened that there was multiple repeat findings, a partner found themselves out of a job, right? And that was again coming from the tone at the top making say, \"Hey, look, we take this seriously and if you don't want to take it seriously, then you're out.\" Now, I don't know if that translates all the way down to the small, local, and regional firms and whether that's good, bad, or indifferent. You know, you would hope at some point, no different than you saw, what is it like 10 or 11 new NFL coaches are looking for jobs right now, right? People get fired, they ge`},
+{time:"48:00",minute:48,text:`job with that region you know and maybe we'll elevate them to Chicago and they can uh they can run national. >> Yeah. Well, a few deficiencies and inspection findings found him out of the job. >> Yeah. Yeah. Yeah. All right. So, I mean, we talked about risk assessment and we talked about um you know, quality sort of responses and and risk based approaches there, but in general because I'm sure people want to know because you talk about you know between SQMS last year and and those firms that maybe already had us begin this QC 1000 implementation, they're just like, well, let's just get it. Let`},
+{time:"49:00",minute:49,text:`>> Yeah. uh some of the big uh hurdles and and why firms have struggled and why there was that big push back is and we talked about this already is that it is extremely timeconuming. Um, we talked about 500 plus partner manager hours and you just can't get the intern and and say, \"Hey, you know, go implement this.\" Um, roll it forward from last year. Uh, right? You can't you can't leverage this down. It's got to be someone that has the requisite knowledge and experience and expertise, right? And so we see that there's a great opportunity cost of pulling 500 partner and director hours out of `},
+{time:"50:00",minute:50,text:`hasn't hit home yet. Um I won't say with with you know with every all leadership and everyone but um you can still see that there's hesitation right by by firm leaders um who just see this as a compliance exercise um you know it's we we advise firms that this can be transformational in nature and really this since this is the structure of this is the foundation of your ANA practice um it should be able to help you transform your ANA practice and then like we talked about help you pass those costs down to your clients and be a differentiator in the market. So we just don't see that full commitm`},
+{time:"51:00",minute:51,text:`implement and you know AICPA has been out since 2022 um the idea was not to uh procrastinate and really try to milestone plan it and chunk it out whether you do it chunk it out by component or take it by you know certain objectives only and then you do your risk assessment either way you should try to chunk it out because it is a heavy lift 500 plus hours like we talked about and then you know the firm the standards actually do say you know these roles and responsibilities that are specifically appointed. Um you have to document and assess how does that individual actually have the expertise a`},
+{time:"52:00",minute:52,text:`maybe managers partners and directors that haven't been in that role. So we'd say there's a there's external resources out there to really leverage expertise. Uh so you know a lot of this has been implemented you know we'd say at at the big four levels you know um you know inspector inspections have come first to the to the big four levels and then you know kind of slowly trickle down to uh you know the top 10 and the the rest of the firms. Um so we've kind of seen that Chris and I through our experience uh with the PCO uh in our days at a big four. So, um, there's external expertise out there`},
+{time:"53:00",minute:53,text:`is obviously there's there's those that also maybe have you know implemented and then we talk about the the QC forms right that would have to be submitted on an annual basis or or you know how are you attesting to this the monitoring process is that as burdensome and like can is there software that just does that like I'm trying to envision of what that process kind of like looks like and you know is is there an opportunity for a software solution that just you know at the end of the day as a you know when I was doing my doctorate of information studies we talk about HCI human computer interac`},
+{time:"54:00",minute:54,text:`>> Well, that that's where I was going to lead to this is that um you know, I did attend a a webcast yesterday on kind of uh it's focused on SQMS number one and um you know, now that the the December 15th deadline is beyond us and implementation has happened, how do you monitor this going forward? And we've gotten questions, you know, emails about this too, is um you know, we've implemented in Excel. Now, how do we actually operate and monitor this? Well, uh just think about trying to do your audits in Excel or SharePoint. Um that's the analogy I would give. There's just no way, right? You nee`},
+{time:"55:00",minute:55,text:`control. >> Welcome to the 21st century, right? >> Yeah. Word Word and Excel is not going to cut it just like it doesn't cut it within your audit files uh anymore. So yeah, >> that reminds me just though I like the whole fact of like using Excel that's what our audit was like when we did the internal audit and advisory stuff like the audit team that was the external auditors we had our own you know we had our own protocols and our own system that we were using and the people who were like advisory who were apparently paid more they had literally the sloppiest work papers and it was all just in`},
+{time:"56:00",minute:56,text:`>> So you were in the days of paper auditing, huh? That's how old you were. >> I was on the other side of it. Let's just put it. >> All right. All right. Well, I'm glad everybody's dating themselves, but I feel like we could go on forever uh hypothesizing about the past of accounting and the futurism of accounting. Um, as well as everyone listening, but uh we all, especially the folks listening, have a hard cut off, I'm sure, to get to some client meetings. So, I wanted to wrap >> season to wrap things up, right? Yeah, we're in the heart of busy season. And speaking of rap, the marketing mater`},
+{time:"57:00",minute:57,text:`Qualified opinions. Yeah, we talk PCAOB. Make it plain. Keep it clear. Cut the noise. Keep receipts. QC on your radar. Don't sleep. Don't stall. Quality ain't a dock. It's your system, your calls. Appreciate y'all tapping in. Yeah, I see that chat. Take this back to your firm. Turn the talk into that. If you stayed for the rap, then you already know. Till the next one. Qualified opinions. Let's go. >> Yeah. >> Very good. >> You didn't ask me to do anything. >> I was I wasn't gonna put you on the spot there, Brian, with a little improv. Um, you know, I know people might have a question about th`},
+{time:"58:00",minute:58,text:`if nobody was listening, then I probably wouldn't be here doing this. And uh perhaps of course the biggest thank you to Brian for sharing his extensive knowledge and qualified opinions as our very first featured guest. >> All right. >> So if you've got topics uh you want us to discuss on future episodes of qualified opinions or have some qualified guests we should feature, let us know. LinkedIn will always be the best way to reach me. Chris, how do you want them to reach you? >> Yeah, LinkedIn or chriscpaub.cpa. >> There you go. Shout out to my co-anchor Chris for keeping me honest and having `},
+{time:"59:00",minute:59,text:`tapping on the magnifying glass icon on the home screen and then entering the name of this event. It takes a few days to make the course. So, if you're attending this event live, keep an eye out for an email letting you know when the course is available. Pass the quiz to earn your CPE. Then tap the button to email yourself a certificate. Stay tuned for more events from earmark. Thanks for joining us and we hope to see you again soon.`}
+];
+
 // ── DATA ──────────────────────────────────────────────────────────────
 
 const reviewQuestions = [
@@ -1391,8 +1759,8 @@ const state = {
   assessmentScore: null,
   assessmentPassed: false,
   evalComplete: false,
-  currentSection: 'video',
-  unlockedSections: ['video']
+  currentSection: 'admin',
+  unlockedSections: ['video']  // video is always accessible once admin is done
 };
 
 // Pre-populate certificate date
@@ -1591,6 +1959,7 @@ function submitEvaluation() {
   updateProgress();
   setTimeout(function() {
     state.unlockedSections.push('certificate');
+    document.getElementById('section-admin').style.display = 'none';
     document.querySelectorAll('.course-section').forEach(function(s) { s.classList.remove('active'); });
     document.getElementById('section-certificate').classList.add('active');
     document.querySelectorAll('.step-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -1605,11 +1974,15 @@ function goToSection(name) {
   if (!state.unlockedSections.includes(name)) return;
   state.currentSection = name;
 
+  // Hide admin card whenever navigating to a step
+  document.getElementById('section-admin').style.display = 'none';
+
   document.querySelectorAll('.course-section').forEach(s => s.classList.remove('active'));
   document.getElementById(`section-${name}`).classList.add('active');
 
   document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(`nav-${name}`).classList.add('active');
+  const navBtn = document.getElementById(`nav-${name}`);
+  if (navBtn) navBtn.classList.add('active');
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -1636,6 +2009,32 @@ function completeVideo() {
   markNavComplete('video');
   updateProgress();
   goToSection('review');
+}
+
+function startCourse() {
+  // Hide admin card, show video section
+  document.getElementById('section-admin').style.display = 'none';
+  // Activate video section
+  document.querySelectorAll('.course-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-video').classList.add('active');
+  // Update nav
+  document.getElementById('nav-admin').classList.remove('active');
+  document.getElementById('nav-admin').classList.add('complete');
+  document.getElementById('nav-admin').querySelector('.step-icon').textContent = '✓';
+  document.getElementById('nav-video').classList.add('active');
+  state.currentSection = 'video';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goToAdmin() {
+  // Show admin, hide all course sections
+  document.getElementById('section-admin').style.display = '';
+  document.querySelectorAll('.course-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('nav-admin').classList.add('active');
+  document.getElementById('nav-admin').classList.remove('complete');
+  state.currentSection = 'admin';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function proceedToAssessment() {
@@ -1685,6 +2084,215 @@ function toggleCourseIndex() {
 renderReviewQuestions();
 renderAssessment();
 renderEvaluation();
+// buildIndex() and buildTranscript() called at end after all data is defined
+
+// ── INDEX DATA ─────────────────────────────────────────────────────────
+const indexData = [
+  { term: "Annual Evaluation", timestamps: ["53:10", "54:00"] },
+  { term: "Annual Reporting / Form QC Filing", timestamps: ["38:16", "42:27", "43:39", "43:50"] },
+  { term: "Audit Quality", timestamps: ["5:59", "7:18", "22:00"] },
+  { term: "Background & Context (Course Overview)", timestamps: ["1:15", "3:03"] },
+  { term: "Brian Yujuico — Introduction", timestamps: ["4:10", "4:33"] },
+  { term: "Chris Vanover — Introduction", timestamps: ["2:05", "3:35"] },
+  { term: "Chief Auditor Role (PwC)", timestamps: ["4:21", "5:38"] },
+  { term: "Compliance vs. Quality", timestamps: ["29:41", "30:00"] },
+  { term: "CPE Credit Methodology", timestamps: ["0:07", "0:47"] },
+  { term: "December 15, 2026 Effective Date", timestamps: ["13:08", "14:18"] },
+  { term: "Deficiencies — Identification & Reporting", timestamps: ["40:53", "42:42"] },
+  { term: "Documentation Retention — 7-Year Requirement", timestamps: ["54:45"] },
+  { term: "Drew Carrick — Introduction", timestamps: ["3:19", "3:27"] },
+  { term: "Engagement Quality Review (EQR)", timestamps: ["5:59", "7:18"] },
+  { term: "Firm Size — Applicability Differences", timestamps: ["25:52", "48:29"] },
+  { term: "Form AP", timestamps: ["38:16"] },
+  { term: "Form QC — Annual Filing Requirement", timestamps: ["38:16", "38:55", "42:27", "43:39", "43:50"] },
+  { term: "Form QC — Managing Partner Signature", timestamps: ["41:58", "43:39", "45:29"] },
+  { term: "Form 2 (PCAOB)", timestamps: ["38:16"] },
+  { term: "Implementation — Common Misconceptions", timestamps: ["48:41"] },
+  { term: "Implementation — Practical Guidance", timestamps: ["25:52", "36:09"] },
+  { term: "Inspection Findings", timestamps: ["3:27", "36:40", "36:49"] },
+  { term: "International Standards (ISQM)", timestamps: ["41:42"] },
+  { term: "Managing Partner — Role & Obligations", timestamps: ["41:58", "43:12", "45:29", "46:10", "47:58"] },
+  { term: "Monitoring — Ongoing Requirements", timestamps: ["36:40", "45:56", "46:38", "53:10"] },
+  { term: "National Office (Quality Control)", timestamps: ["5:38"] },
+  { term: "PCAOB — Background & Overview", timestamps: ["8:00", "9:00", "14:18"] },
+  { term: "PCAOB — Budget & Future", timestamps: ["1:44", "9:00"] },
+  { term: "PCAOB Inspection Process", timestamps: ["3:27", "36:40"] },
+  { term: "Policies and Procedures — Designing Responses", timestamps: ["22:56", "36:14"] },
+  { term: "Public Company Audits", timestamps: ["5:16", "5:22"] },
+  { term: "PwC — National Quality Office", timestamps: ["4:21", "5:38"] },
+  { term: "QC 1000 — Overview", timestamps: ["1:35", "3:03", "13:08"] },
+  { term: "QC 1000 vs. SQMS No. 1 — Key Differences", timestamps: ["15:09", "17:21", "19:53", "39:17"] },
+  { term: "QC 20 / QC 25 — Predecessor Standards", timestamps: ["15:09"] },
+  { term: "Quality Control System — Definition", timestamps: ["22:00", "36:09"] },
+  { term: "Quality Objectives", timestamps: ["22:02", "51:18"] },
+  { term: "Quality Risks — Identification", timestamps: ["21:57", "22:36", "23:04", "24:32"] },
+  { term: "Reasonable Assurance — Standard Required", timestamps: ["30:00"] },
+  { term: "Remediation Plans", timestamps: ["36:49", "40:23", "42:42"] },
+  { term: "Risk Assessment Process", timestamps: ["21:57", "22:02", "22:36", "36:09", "48:13", "51:18"] },
+  { term: "Risk-Based Approach", timestamps: ["22:00", "24:58"] },
+  { term: "Root Cause Analysis", timestamps: ["36:49", "40:23"] },
+  { term: "Sarbanes-Oxley (SOX) — Analogy", timestamps: ["36:09"] },
+  { term: "SQMS No. 1 — AICPA Standard", timestamps: ["15:09", "17:21", "24:58", "29:41", "39:17", "41:42", "48:29", "54:04"] },
+  { term: "Technology — Audit Software & Tools", timestamps: ["24:32", "54:45"] },
+  { term: "Tone at the Top", timestamps: ["43:12", "46:10"] },
+  { term: "Training & Competence Requirements", timestamps: ["5:59"] },
+];
+
+// Build index grouped by letter
+function buildIndex() {
+  const grouped = {};
+  indexData.forEach(entry => {
+    const letter = entry.term[0].toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(entry);
+  });
+
+  // Letter nav
+  const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const navEl = document.getElementById('index-letter-nav');
+  if (!navEl) return;
+  navEl.innerHTML = allLetters.map(l => {
+    const has = !!grouped[l];
+    return `<button class="letter-btn ${has ? 'has-entries' : 'disabled-letter'}" id="lbtn-${l}" onclick="${has ? `scrollToLetter('${l}')` : ''}">${l}</button>`;
+  }).join('');
+
+  // Body
+  renderIndexBody(grouped, '');
+}
+
+function renderIndexBody(grouped, filter) {
+  const body = document.getElementById('index-body');
+  if (!body) return;
+  const filterLower = filter.toLowerCase();
+
+  let html = '';
+  const letters = Object.keys(grouped).sort();
+  let anyVisible = false;
+
+  letters.forEach(letter => {
+    const entries = grouped[letter].filter(e =>
+      !filter || e.term.toLowerCase().includes(filterLower)
+    );
+    if (!entries.length) return;
+    anyVisible = true;
+    html += `<div class="index-letter-section" id="idx-letter-${letter}">`;
+    html += `<div class="index-letter-heading">${letter}</div>`;
+    html += `<div class="index-entries">`;
+    entries.forEach(e => {
+      const badges = e.timestamps.map(t => `<span class="ts-badge">${t}</span>`).join('');
+      html += `<div class="index-entry"><span class="index-term">${e.term}</span><div class="index-timestamps">${badges}</div></div>`;
+    });
+    html += `</div></div>`;
+  });
+
+  if (!anyVisible) {
+    html = `<div class="index-no-results">No index entries match "<strong>${filter}</strong>"</div>`;
+  }
+
+  body.innerHTML = html;
+}
+
+function filterIndex(val) {
+  const grouped = {};
+  indexData.forEach(entry => {
+    const letter = entry.term[0].toUpperCase();
+    if (!grouped[letter]) grouped[letter] = [];
+    grouped[letter].push(entry);
+  });
+  renderIndexBody(grouped, val);
+}
+
+function scrollToLetter(letter) {
+  // Clear filter first
+  const input = document.getElementById('index-search');
+  if (input) { input.value = ''; filterIndex(''); }
+  setTimeout(() => {
+    const el = document.getElementById('idx-letter-' + letter);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
+
+// ── TRANSCRIPT SEARCH ──────────────────────────────────────────────────
+function buildTranscript() {
+  const scroll = document.getElementById('transcript-scroll');
+  if (!scroll) return;
+  scroll.innerHTML = transcriptBlocks.map((b, i) =>
+    `<div class="transcript-block" id="tb-${i}" data-minute="${b.minute}">
+      <div class="transcript-ts">${b.time}</div>
+      <div class="transcript-text" id="tb-text-${i}">${escapeHtml(b.text)}</div>
+    </div>`
+  ).join('');
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function searchTranscript(query) {
+  const count = document.getElementById('transcript-count');
+  if (!query.trim()) {
+    // Reset: show all blocks with plain text
+    transcriptBlocks.forEach((b, i) => {
+      const block = document.getElementById('tb-' + i);
+      const textEl = document.getElementById('tb-text-' + i);
+      if (block) block.classList.remove('highlight', 'hidden');
+      if (textEl) textEl.innerHTML = escapeHtml(b.text);
+    });
+    if (count) count.textContent = '';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  // Escape special regex chars in the raw query for matching in plain text
+  const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const highlightRegex = new RegExp('(' + escapedQuery + ')', 'gi');
+
+  let matchCount = 0;
+  let firstMatch = null;
+
+  transcriptBlocks.forEach((b, i) => {
+    const block = document.getElementById('tb-' + i);
+    const textEl = document.getElementById('tb-text-' + i);
+    if (!block || !textEl) return;
+
+    if (b.text.toLowerCase().includes(q)) {
+      block.classList.remove('hidden');
+      block.classList.add('highlight');
+      // Escape HTML first, then apply highlight marks on the escaped output
+      const safe = escapeHtml(b.text);
+      const escapedQ2 = escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      textEl.innerHTML = safe.replace(new RegExp('(' + escapedQ2 + ')', 'gi'), '<mark>$1</mark>');
+      matchCount++;
+      if (!firstMatch) firstMatch = block;
+    } else {
+      block.classList.add('hidden');
+      block.classList.remove('highlight');
+      textEl.innerHTML = escapeHtml(b.text);
+    }
+  });
+
+  if (count) {
+    count.textContent = matchCount > 0
+      ? 'Found ' + matchCount + ' segment' + (matchCount !== 1 ? 's' : '') + ' containing "' + query + '"'
+      : 'No results found for "' + query + '"';
+  }
+  if (firstMatch) setTimeout(() => firstMatch.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+}
+
+// ── TOC TOGGLE ─────────────────────────────────────────────────────────
+function toggleTOC() {
+  const panel = document.getElementById('toc-panel');
+  const chevron = document.getElementById('toc-chevron');
+  if (!panel) return;
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+
+// ── DEFERRED INIT ─────────────────
+buildIndex();
+buildTranscript();
 </script>
 
 </body>
