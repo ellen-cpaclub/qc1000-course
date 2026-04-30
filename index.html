@@ -1177,7 +1177,7 @@
 
       <!-- PUBLICATION / REVIEW DATE -->
       <div class="card-body" style="padding-top:12px;padding-bottom:0;">
-        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 28, 2026|&nbsp; Last Revision Date: April 30, 2026</div>
+        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 20, 2026 |&nbsp; Last Revsion Date: April 30, 2026</div>
       </div>
 
       <!-- LEARNING OBJECTIVES -->
@@ -1259,68 +1259,78 @@
     </div>
 
 
-    <!-- TABLE OF CONTENTS (main col) -->
-    <div class="card" id="section-toc-main">
-      <div class="card-header">
-        <div class="card-title">Course Reference</div>
-        <div class="card-heading">Table of Contents</div>
-      </div>
-      <div class="card-body">
-        <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">This course is organized into the following topics. Use the <strong>Alphabetical Index</strong> or <strong>Searchable Transcript</strong> below to locate specific information within the recording.</p>
-        <div class="toc-grid">
-          <div class="toc-item"><div class="toc-num">1</div><div class="toc-info"><div class="toc-title">Introduction &amp; Housekeeping</div><div class="toc-time">0:00 – 1:15</div></div></div>
-          <div class="toc-item"><div class="toc-num">2</div><div class="toc-info"><div class="toc-title">Meet the Panelists</div><div class="toc-time">1:15 – 8:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">3</div><div class="toc-info"><div class="toc-title">PCAOB Background &amp; Current Events</div><div class="toc-time">8:00 – 15:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">4</div><div class="toc-info"><div class="toc-title">QC 1000 vs. SQMS No. 1 — Key Differences</div><div class="toc-time">15:00 – 22:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">5</div><div class="toc-info"><div class="toc-title">Risk-Based Approach &amp; Quality Objectives</div><div class="toc-time">22:00 – 30:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">6</div><div class="toc-info"><div class="toc-title">Reasonable Assurance &amp; Firm Obligations</div><div class="toc-time">30:00 – 38:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">7</div><div class="toc-info"><div class="toc-title">Form QC &amp; Annual Filing Requirement</div><div class="toc-time">38:00 – 44:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">8</div><div class="toc-info"><div class="toc-title">Monitoring, Remediation &amp; Annual Evaluation</div><div class="toc-time">44:00 – 52:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">9</div><div class="toc-info"><div class="toc-title">Documentation &amp; Retention (7-Year Requirement)</div><div class="toc-time">52:00 – 56:00</div></div></div>
-          <div class="toc-item"><div class="toc-num">10</div><div class="toc-info"><div class="toc-title">Q&amp;A, Closing Remarks &amp; Resources</div><div class="toc-time">56:00 – End</div></div></div>
+    <!-- COURSE RESOURCES COLLAPSIBLE WRAPPER -->
+    <div class="card" id="course-resources-wrapper">
+      <!-- Collapsed toggle bar (always visible) -->
+      <button onclick="toggleCourseResources()" id="resources-toggle-btn" style="width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;padding:18px 28px;text-align:left;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:18px;">📚</span>
+          <div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-400);margin-bottom:2px;">Course Reference Materials</div>
+            <div style="font-size:14px;font-weight:600;color:var(--navy);">Table of Contents · Alphabetical Index · Searchable Transcript</div>
+          </div>
         </div>
-        <div style="margin-top:14px;padding:12px 16px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:8px;font-size:12px;color:#1E3A8A;">
-          💡 <strong>How to find specific information:</strong> Use the <strong>Alphabetical Index</strong> below to look up key terms and their timestamps, or use the <strong>Searchable Transcript</strong> (Ctrl+F style search) to find any word or phrase in the recording.
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <span id="resources-toggle-label" style="font-size:12px;font-weight:600;color:var(--blue-accent);white-space:nowrap;">Expand for Course Resources ▼</span>
         </div>
-      </div>
-    </div>
+      </button>
 
-    <!-- ALPHABETICAL INDEX (main col) -->
-    <div class="card" id="section-index-main">
-      <div class="card-header">
-        <div class="card-title">Course Reference</div>
-        <div class="card-heading">Alphabetical Index</div>
-      </div>
-      <div class="card-body">
-        <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px;">An alphabetical listing of key topics covered in this course, with timestamps indicating where each topic can be found in the recording. Click any letter to jump to that section, or type a term in the search box.</p>
-        <div class="index-search-bar">
-          <span style="font-size:15px;color:var(--gray-400);">🔍</span>
-          <input type="text" class="index-search-input" id="index-search" placeholder="Search index terms (e.g. Form QC, monitoring)…" oninput="filterIndex(this.value)">
-          <button onclick="document.getElementById('index-search').value='';filterIndex('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
-        </div>
-        <div class="index-letter-nav" id="index-letter-nav"></div>
-        <div id="index-body"></div>
-      </div>
-    </div>
+      <!-- Collapsible content -->
+      <div id="course-resources-body" style="display:none;border-top:1px solid var(--gray-200);">
 
-    <!-- SEARCHABLE TRANSCRIPT (main col) -->
-    <div class="card" id="section-transcript-main">
-      <div class="card-header">
-        <div class="card-title">Course Reference</div>
-        <div class="card-heading">Searchable Transcript</div>
-      </div>
-      <div class="card-body">
-        <p style="font-size:13px;color:var(--gray-500);margin-bottom:10px;">This is the complete transcript of the panel discussion. Use the search box below to find any word or phrase — matching segments will be highlighted. Timestamps correspond to the video recording above.</p>
-        <div class="transcript-search-bar">
-          <span style="font-size:15px;color:var(--gray-400);">🔍</span>
-          <input type="text" class="transcript-search-input" id="transcript-search" placeholder="Type any term to search the transcript (e.g. "Form QC", "monitoring")…" oninput="searchTranscript(this.value)">
-          <button onclick="document.getElementById('transcript-search').value='';searchTranscript('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
+        <!-- TABLE OF CONTENTS -->
+        <div id="section-toc-main" style="padding:24px 28px;border-bottom:1px solid var(--gray-200);">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-400);margin-bottom:6px;">Course Reference</div>
+          <div style="font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:14px;">Table of Contents</div>
+          <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px;">This course is organized into the following topics. Use the <strong>Alphabetical Index</strong> or <strong>Searchable Transcript</strong> below to locate specific information within the recording.</p>
+          <div class="toc-grid">
+            <div class="toc-item"><div class="toc-num">1</div><div class="toc-info"><div class="toc-title">Introduction &amp; Housekeeping</div><div class="toc-time">0:00 – 1:15</div></div></div>
+            <div class="toc-item"><div class="toc-num">2</div><div class="toc-info"><div class="toc-title">Meet the Panelists</div><div class="toc-time">1:15 – 8:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">3</div><div class="toc-info"><div class="toc-title">PCAOB Background &amp; Current Events</div><div class="toc-time">8:00 – 15:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">4</div><div class="toc-info"><div class="toc-title">QC 1000 vs. SQMS No. 1 — Key Differences</div><div class="toc-time">15:00 – 22:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">5</div><div class="toc-info"><div class="toc-title">Risk-Based Approach &amp; Quality Objectives</div><div class="toc-time">22:00 – 30:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">6</div><div class="toc-info"><div class="toc-title">Reasonable Assurance &amp; Firm Obligations</div><div class="toc-time">30:00 – 38:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">7</div><div class="toc-info"><div class="toc-title">Form QC &amp; Annual Filing Requirement</div><div class="toc-time">38:00 – 44:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">8</div><div class="toc-info"><div class="toc-title">Monitoring, Remediation &amp; Annual Evaluation</div><div class="toc-time">44:00 – 52:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">9</div><div class="toc-info"><div class="toc-title">Documentation &amp; Retention (7-Year Requirement)</div><div class="toc-time">52:00 – 56:00</div></div></div>
+            <div class="toc-item"><div class="toc-num">10</div><div class="toc-info"><div class="toc-title">Q&amp;A, Closing Remarks &amp; Resources</div><div class="toc-time">56:00 – End</div></div></div>
+          </div>
+          <div style="margin-top:14px;padding:12px 16px;background:var(--blue-light);border:1px solid #BFDBFE;border-radius:8px;font-size:12px;color:#1E3A8A;">
+            💡 <strong>How to find specific information:</strong> Use the <strong>Alphabetical Index</strong> below to look up key terms and their timestamps, or use the <strong>Searchable Transcript</strong> (Ctrl+F style search) to find any word or phrase in the recording.
+          </div>
         </div>
-        <div class="transcript-hint">Tip: You can also use Ctrl+F in your browser to search this entire page.</div>
-        <div class="transcript-results-count" id="transcript-count"></div>
-        <div class="transcript-scroll" id="transcript-scroll"></div>
-      </div>
-    </div>
+
+        <!-- ALPHABETICAL INDEX -->
+        <div id="section-index-main" style="padding:24px 28px;border-bottom:1px solid var(--gray-200);">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-400);margin-bottom:6px;">Course Reference</div>
+          <div style="font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:14px;">Alphabetical Index</div>
+          <p style="font-size:13px;color:var(--gray-500);margin-bottom:14px;">An alphabetical listing of key topics covered in this course, with timestamps indicating where each topic can be found in the recording. Click any letter to jump to that section, or type a term in the search box.</p>
+          <div class="index-search-bar">
+            <span style="font-size:15px;color:var(--gray-400);">🔍</span>
+            <input type="text" class="index-search-input" id="index-search" placeholder="Search index terms (e.g. Form QC, monitoring)…" oninput="filterIndex(this.value)">
+            <button onclick="document.getElementById('index-search').value='';filterIndex('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
+          </div>
+          <div class="index-letter-nav" id="index-letter-nav"></div>
+          <div id="index-body"></div>
+        </div>
+
+        <!-- SEARCHABLE TRANSCRIPT -->
+        <div id="section-transcript-main" style="padding:24px 28px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--gray-400);margin-bottom:6px;">Course Reference</div>
+          <div style="font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:14px;">Searchable Transcript</div>
+          <p style="font-size:13px;color:var(--gray-500);margin-bottom:10px;">This is the complete transcript of the panel discussion. Use the search box below to find any word or phrase — matching segments will be highlighted. Timestamps correspond to the video recording above.</p>
+          <div class="transcript-search-bar">
+            <span style="font-size:15px;color:var(--gray-400);">🔍</span>
+            <input type="text" class="transcript-search-input" id="transcript-search" placeholder="Type any term to search the transcript (e.g. &quot;Form QC&quot;, &quot;monitoring&quot;)…" oninput="searchTranscript(this.value)">
+            <button onclick="document.getElementById('transcript-search').value='';searchTranscript('');" style="background:none;border:none;cursor:pointer;color:var(--gray-400);font-size:14px;padding:0;">✕</button>
+          </div>
+          <div class="transcript-hint">Tip: You can also use Ctrl+F in your browser to search this entire page.</div>
+          <div class="transcript-results-count" id="transcript-count"></div>
+          <div class="transcript-scroll" id="transcript-scroll"></div>
+        </div>
+
+      </div><!-- /course-resources-body -->
+    </div><!-- /course-resources-wrapper -->
 
     <!-- REVIEW QUESTIONS -->
     <div class="card course-section" id="section-review">
@@ -2289,6 +2299,17 @@ function toggleTOC() {
   const isOpen = panel.style.display !== 'none';
   panel.style.display = isOpen ? 'none' : 'block';
   if (chevron) chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function toggleCourseResources() {
+  const body = document.getElementById('course-resources-body');
+  const label = document.getElementById('resources-toggle-label');
+  const btn = document.getElementById('resources-toggle-btn');
+  if (!body) return;
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  label.textContent = isOpen ? 'Expand for Course Resources ▼' : 'Collapse ▲';
+  btn.style.borderBottom = isOpen ? 'none' : '1px solid var(--gray-200)';
 }
 
 
