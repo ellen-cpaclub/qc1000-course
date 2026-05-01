@@ -1171,13 +1171,13 @@
       <!-- COURSE INFO BANNER -->
       <div class="card-body" style="padding-bottom:0;">
         <div style="background:var(--gold-light);border:1px solid #FDE68A;border-radius:10px;padding:14px 18px;font-size:13px;color:#78350F;margin-bottom:0;">
-          <strong>Important:</strong> You must complete the qualified assessment within <strong>one year</strong> of enrollment. A passing score of 70% or higher is required to earn CPE credit.
+          <strong>Important:</strong> You must complete the qualified assessment within <strong>one year</strong> of enrollment. A passing score of 70% or higher is required to earn CPE credit. Feedback is not provided on the qualified assessment.
         </div>
       </div>
 
       <!-- PUBLICATION / REVIEW DATE -->
       <div class="card-body" style="padding-top:12px;padding-bottom:0;">
-        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 30, 2026 &nbsp;|&nbsp; Review Date: March 20, 2026 |&nbsp; Last Revision Date: April 30, 2026</div>
+        <div style="font-size:12px;color:var(--gray-500);">Publication Date: March 20, 2026 &nbsp;|&nbsp; Review Date: March 30, 2026 |&nbsp; Last Revision Date: April 30, 2026</div>
       </div>
 
       <!-- LEARNING OBJECTIVES -->
@@ -1669,21 +1669,6 @@ const transcriptBlocks = [
 const reviewQuestions = [
   {
     id: 'rq1',
-    lo: 'LO 1',
-    timing: '~38-minute mark',
-    question: 'According to the panel discussion, how often must Form QC be filed under PCAOB QC 1000?',
-    options: ['Only upon adoption of QC 1000', 'Every three years', 'Annually', 'Only when deficiencies are identified'],
-    correct: 2,
-    correctFeedback: 'Correct! Under PCAOB QC 1000, firms are required to file Form QC every year. Brian described it as an ongoing annual obligation — not a one-time or event-triggered filing — that firms must submit on a recurring basis as long as they remain registered with the PCAOB.',
-    optionFeedback: [
-      'Incorrect. Form QC is not a one-time filing tied to a firm\u2019s initial adoption of QC 1000. Brian explained that the filing obligation continues every year after adoption, regardless of whether the standard is new to the firm.',
-      'Incorrect. Form QC does not follow a three-year cycle. Unlike some other regulatory filings that operate on multi-year schedules, the panel described Form QC as an annual requirement that recurs each year a firm remains PCAOB-registered.',
-      '',
-      'Incorrect. Form QC is not triggered only when deficiencies are found. The panel was clear that it is an annual filing requirement applicable to all registered firms, and it must be submitted regardless of whether the firm\u2019s monitoring process identified any deficiencies.'
-    ]
-  },
-  {
-    id: 'rq2',
     lo: 'LO 2',
     timing: '~22-minute mark',
     question: 'Under PCAOB QC 1000, how are firms expected to address quality risks within their system of quality control?',
@@ -1700,6 +1685,21 @@ const reviewQuestions = [
       '',
       'Incorrect. While PCAOB inspection findings may inform a firm\u2019s awareness of quality issues, QC 1000 does not direct firms to rely primarily on inspection results when designing their quality controls. The standard requires firms to proactively conduct their own risk assessments rather than reactively build controls around past inspection findings.',
       'Incorrect. QC 1000 requires risk assessments at the firm level — not just at the level of individual engagements. Brian distinguished the firm-wide quality control system from engagement-level procedures, explaining that QC 1000 obligates firms to assess and address quality risks across the entire firm, not only within specific audits.'
+    ]
+  },
+  {
+    id: 'rq2',
+    lo: 'LO 1',
+    timing: '~38-minute mark',
+    question: 'According to the panel discussion, how often must Form QC be filed under PCAOB QC 1000?',
+    options: ['Only upon adoption of QC 1000', 'Every three years', 'Annually', 'Only when deficiencies are identified'],
+    correct: 2,
+    correctFeedback: 'Correct! Under PCAOB QC 1000, firms are required to file Form QC every year. Brian described it as an ongoing annual obligation — not a one-time or event-triggered filing — that firms must submit on a recurring basis as long as they remain registered with the PCAOB.',
+    optionFeedback: [
+      'Incorrect. Form QC is not a one-time filing tied to a firm\u2019s initial adoption of QC 1000. Brian explained that the filing obligation continues every year after adoption, regardless of whether the standard is new to the firm.',
+      'Incorrect. Form QC does not follow a three-year cycle. Unlike some other regulatory filings that operate on multi-year schedules, the panel described Form QC as an annual requirement that recurs each year a firm remains PCAOB-registered.',
+      '',
+      'Incorrect. Form QC is not triggered only when deficiencies are found. The panel was clear that it is an annual filing requirement applicable to all registered firms, and it must be submitted regardless of whether the firm\u2019s monitoring process identified any deficiencies.'
     ]
   },
   {
